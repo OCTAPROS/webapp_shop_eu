@@ -1,9 +1,9 @@
 services:
   backend:
-    build: .
+    build: .\backend
     ports:
       - "8001:8001"
-    container_name: fastapi-application
+    container_name: fastapi-backend
     environment:
       PORT: 8001
 
@@ -11,6 +11,6 @@ services:
     build: .\frontend
     ports:
       - "80:80"
-    container_name: vuejs-application
+    container_name: vuejs-frontend
     depends_on:
       - backend

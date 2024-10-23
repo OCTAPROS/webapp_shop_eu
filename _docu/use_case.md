@@ -18,6 +18,7 @@ package "Sklep internetowy" {
   usecase "Wyślij zamówienie" as UC_p2
 
   usecase "Wyświetl raport sprzedażowy" as UC_pb1
+
 }
 
 k --> UC_k1
@@ -27,5 +28,6 @@ k --> UC_k3
 p --> UC_p1
 p --> UC_p2
 pb --> UC_pb1
+
 @enduml
 ```
