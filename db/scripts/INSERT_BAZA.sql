@@ -15,18 +15,8 @@ insert into miasto (nazwa) values ('Czarnochowice');
 insert into miasto (nazwa) values ('Brzegi');
 commit;
 
-insert into status (nazwa) values ('Wysłano');
-insert into status (nazwa) values ('W realizacji');
-insert into status (nazwa) values ('Anulowano');
-commit;
-
-
-insert into formaPlatnosci (nazwa) values ('Blik'); --1
-insert into formaPlatnosci (nazwa) values ('Przelew'); --2
-insert into formaPlatnosci (nazwa) values ('PayPal'); --3
-insert into formaPlatnosci (nazwa) values ('Eprzelew'); --4
-insert into formaPlatnosci (nazwa) values ('Pobranie'); --5
-commit;
+-- tabele formaplatności, status, marka usunięto
+-- zaktualizowano inserty
 
 insert into typ (nazwa) values ('Kubek'); --1
 insert into typ (nazwa) values ('Notes'); --2
@@ -46,93 +36,83 @@ insert into formaOdbioru (nazwa) values ('KurierDHL'); --6
 insert into formaOdbioru (nazwa) values ('Odbior_osobisy'); --7
 commit;
 
-insert into marka (nazwa) values ('FineCup'); --1
-insert into marka (nazwa) values ('Kubeczki'); --2
-insert into marka (nazwa) values ('Mechanikk'); --3
-insert into marka (nazwa) values ('CoolNotes'); --4
-insert into marka (nazwa) values ('Funpo'); --5
-insert into marka (nazwa) values ('StarWorse'); --6
-insert into marka (nazwa) values ('NiceMat'); --7
-insert into marka (nazwa) values ('NaklejSE'); --8
-insert into marka (nazwa) values ('DoLodówy'); --9
-insert into marka (nazwa) values ('BedzieCiepło'); --9
 --///////////////////
 --1
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('1', '1', '30', 'Silny kubek', '2278286065268', '31');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('FineCup', '1', '30', 'Silny kubek', '2278286065268', '31');
 --2
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('2', '1', '40', 'Kubek wieża', '9920688266042', '5');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Kubeczki', '1', '40', 'Kubek wieża', '9920688266042', '5');
 --3
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('3', '1', '45', 'Kubek granat', '7131065633841', '9');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Mechanikk', '1', '45', 'Kubek granat', '7131065633841', '9');
 --4
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('2', '1', '35', 'Czołgowy kubek', '2973987188987', '30');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Kubeczki', '1', '35', 'Czołgowy kubek', '2973987188987', '30');
 --5
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('1', '1', '50', 'Kubek twardziela', '7134158762497', '6');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('FineCup', '1', '50', 'Kubek twardziela', '7134158762497', '6');
 --///////////////////
 --6
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('4', '2', '25', 'Świecący notesik', '0308487326874', '10');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('CoolNotes', '2', '25', 'Świecący notesik', '0308487326874', '10');
 --7
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('4', '2', '20', 'Magnesowy notes', '2093483028379', '43');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('CoolNotes', '2', '20', 'Magnesowy notes', '2093483028379', '43');
 --8
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('4', '2', '40', 'Pancerny notes', '6960594009213', '45');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('CoolNotes', '2', '40', 'Pancerny notes', '6960594009213', '45');
 --9
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('4', '2', '70', 'Notes z lampką', '7600244607237', '20');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('CoolNotes', '2', '70', 'Notes z lampką', '7600244607237', '20');
 --10
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('4', '2', '70', 'Notes Harry Plotter', '0844741072915', '60');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('CoolNotes', '2', '70', 'Notes Harry Plotter', '0844741072915', '60');
 --///////////////////
 --11
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('5', '3', '55', 'Pop HarryPlotter 01', '1759823312768', '70');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Funpo', '3', '55', 'Pop HarryPlotter 01', '1759823312768', '70');
 --12
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('5', '3', '55', 'Pop RonWeaslu 02', '7568591617777', '32');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Funpo', '3', '55', 'Pop RonWeaslu 02', '7568591617777', '32');
 --13
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('5', '3', '55', 'Pop WandaVision 05', '2341466512194', '1');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Funpo', '3', '55', 'Pop WandaVision 05', '2341466512194', '1');
 --14
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('5', '3', '55', 'Pop Zgredek 06', '5312061004824', '12');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Funpo', '3', '55', 'Pop Zgredek 06', '5312061004824', '12');
 --15
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('5', '3', '55', 'Pop DarkPhoenix 01', '6552470921964', '9');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('Funpo', '3', '55', 'Pop DarkPhoenix 01', '6552470921964', '9');
 --///////////////////
 --16
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('6', '4', '30', 'StrongForce', '2242415381451', '51');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('StarWorse', '4', '30', 'StrongForce', '2242415381451', '51');
 --17
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('6', '4', '30', 'JodaWita', '9657561134715', '22');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('StarWorse', '4', '30', 'JodaWita', '9657561134715', '22');
 --18
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('7', '4', '30', 'IćStont', '8955471095166', '11');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NiceMat', '4', '30', 'IćStont', '8955471095166', '11');
 --19
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('7', '4', '30', 'DzieńDobry', '6941628282567', '9');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NiceMat', '4', '30', 'DzieńDobry', '6941628282567', '9');
 --20
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('7', '4', '30', 'WitajŻengaj', '9959398039813', '46');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NiceMat', '4', '30', 'WitajŻengaj', '9959398039813', '46');
 --///////////////////
 --21
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('8', '5', '15', 'Naklejki samochodziki', '1295026731055', '45');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NaklejSE', '5', '15', 'Naklejki samochodziki', '1295026731055', '45');
 --22
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('8', '5', '15', 'Naklejki domki', '2552333590720', '63');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NaklejSE', '5', '15', 'Naklejki domki', '2552333590720', '63');
 --23
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('8', '5', '15', 'Naklejki superbohaterzy', '7027493994749', '2');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NaklejSE', '5', '15', 'Naklejki superbohaterzy', '7027493994749', '2');
 --24
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('8', '5', '15', 'Naklejki HarryPlotter', '3761536210758', '33');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NaklejSE', '5', '15', 'Naklejki HarryPlotter', '3761536210758', '33');
 --25
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('8', '5', '15', 'Naklejki wyścigówki', '9773611413644', '69');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('NaklejSE', '5', '15', 'Naklejki wyścigówki', '9773611413644', '69');
 --///////////////////
 --26
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('9', '6', '15', 'Magnesy plażowe', '4590402559832', '43');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('DoLodówy', '6', '15', 'Magnesy plażowe', '4590402559832', '43');
 --27
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('9', '6', '15', 'Magnesy górskie', '8027976321368', '5');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('DoLodówy', '6', '15', 'Magnesy górskie', '8027976321368', '5');
 --28
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('9', '6', '15', 'Magnesy zachód słońca', '5670923962379', '1');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('DoLodówy', '6', '15', 'Magnesy zachód słońca', '5670923962379', '1');
 --29
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('9', '6', '15', 'Magnesy fast food', '5998270636621', '25');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('DoLodówy', '6', '15', 'Magnesy fast food', '5998270636621', '25');
 --30
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('9', '6', '15', 'Magnesy miasta', '5368684830081', '14');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('DoLodówy', '6', '15', 'Magnesy miasta', '5368684830081', '14');
 --///////////////////
 --31
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('10', '7', '50', 'Zielony koc', '2978382010222', '57');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('BedzieCiepło', '7', '50', 'Zielony koc', '2978382010222', '57');
 --32
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('10', '7', '50', 'Czerwony koc', '2978382010223', '21');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('BedzieCiepło', '7', '50', 'Czerwony koc', '2978382010223', '21');
 --33
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('10', '7', '50', 'Biały koc', '2978382010224', '34');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('BedzieCiepło', '7', '50', 'Biały koc', '2978382010224', '34');
 --34
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('10', '7', '50', 'Czarny koc', '2978382010225', '5');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('BedzieCiepło', '7', '50', 'Czarny koc', '2978382010225', '5');
 --35
-insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('10', '7', '50', 'Fioletowy koc', '2978382010226', '98');
+insert into produkt (marka, typ, cena, nazwa, ean, ilosc_magazyn) values ('BedzieCiepło', '7', '50', 'Fioletowy koc', '2978382010226', '98');
 commit;
 --///////////////////
 
@@ -177,43 +157,43 @@ insert into lista_zakupow (id_listy, produkt, ilosc) values ('20','6', '1');
 commit;
                                                                                                                       --klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('1', 'A1001', '1', '60', '7', '2021-04-01', '2021-04-05', '1', '1');
+values ('1', 'A1001', 'Blik', '60', '7', '2021-04-01', '2021-04-05', 'Wysłano', '1');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('2', 'A1002', '1', '40', '2', '2021-04-05', '2021-04-06', '1', '2');
+values ('2', 'A1002', 'Blik', '40', '2', '2021-04-05', '2021-04-06', 'Wysłano', '2');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, status, lista_zak) 
-values ('3', 'A1003', '1', '310', '1', '2021-7-04', '3', '3');
+values ('3', 'A1003', 'Blik', '310', '1', '2021-7-04', '3', '3');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('4', 'A1004', '5', '40', '2', '2021-04-08', '2021-04-09', '1', '4');
+values ('4', 'A1004', 'Przelew', '40', '2', '2021-04-08', '2021-04-09', 'Wysłano', '4');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('5', 'A1005', '1', '175', '5', '2021-04-08', '2021-04-09', '1', '5');
+values ('5', 'A1005', 'Blik', '175', '5', '2021-04-08', '2021-04-09', 'Wysłano', '5');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, status, lista_zak) 
-values ('6', 'A1006', '2', '55', '1', '2021-10-04', '5', '6');
+values ('6', 'A1006', 'Przelew', '55', '1', '2021-10-04', '5', '6');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('7', 'A1007', '1', '30', '4', '2021-04-11', '2021-04-13', '1', '7');
+values ('7', 'A1007', 'Blik', '30', '4', '2021-04-11', '2021-04-13', 'Wysłano', '7');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('8', 'A1008', '1', '90', '1', '2021-05-11', '2021-05-13', '1', '8');
+values ('8', 'A1008', 'Blik', '90', '1', '2021-05-11', '2021-05-13', 'Wysłano', '8');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('9', 'A1009', '4', '50', '2', '2021-05-11', '2021-05-13', '1', '9');
+values ('9', 'A1009', 'Przelew', '50', '2', '2021-05-11', '2021-05-13', 'Wysłano', '9');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('10', 'A1010', '5', '100', '1', '2021-05-12', '2021-05-13', '1', '10');
+values ('10', 'A1010', 'Blik', '100', '1', '2021-05-12', '2021-05-13', '1', '10');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('11', 'A1011', '1', '15', '1', '2021-05-13', '2021-05-14', '1', '11');
+values ('11', 'A1011', 'PayPal', '15', '1', '2021-05-13', '2021-05-14', 'W realizacji', '11');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('12', 'A1012', '3', '60', '6', '2021-06-14', '2021-06-15', '1', '12');
+values ('12', 'A1012', 'PayPal', '60', '6', '2021-06-14', '2021-06-15', 'W realizacji', '12');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('6', 'A1013', '1', '40', '1', '2021-06-15', '2021-06-16', '1', '13');
+values ('6', 'A1013', 'PayPal', '40', '1', '2021-06-15', '2021-06-16', 'W realizacji', '13');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, status, lista_zak) 
-values ('4', 'A1014', '3', '105', '1', '2021-06-04', '3', '14');
+values ('4', 'A1014', 'Pobranie', '105', '1', '2021-06-04', 'Anulowano', '14');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('12', 'A1015', '2', '55', '6', '2021-06-15', '2021-06-16', '1', '15');
+values ('12', 'A1015', 'Pobranie', '55', '6', '2021-06-15', '2021-06-16', 'Anulowano', '15');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('1', 'A1016', '2', '70', '2', '2021-06-15', '2021-06-16', '1', '16');
+values ('1', 'A1016', 'Pobranie', '70', '2', '2021-06-15', '2021-06-16', 'Anulowano', '16');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('2', 'A1017', '1', '90', '5', '2021-06-18', '2021-06-20', '1', '17');
+values ('2', 'A1017', 'Pobranie', '90', '5', '2021-06-18', '2021-06-20', 'Wysłano', '17');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('3', 'A1018', '4', '55', '4', '2021-06-18', '2021-06-20', '1', '18');
+values ('3', 'A1018', 'Blik', '55', '4', '2021-06-18', '2021-06-20', 'Wysłano', '18');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('6', 'A1019', '1', '60', '1', '2021-06-20', '2021-06-21', '1', '19');
+values ('6', 'A1019', 'Blik', '60', '1', '2021-06-20', '2021-06-21', 'Wysłano', '19');
 insert into zamowienie (klient, nr_zamowienia, formaPlatnosci, wartosc, formaOdbioru, data_zlozenia, data_wyslania, status, lista_zak) 
-values ('4', 'A1020', '5', '55', '3', '2021-06-20', '2021-06-21', '1', '20');
+values ('4', 'A1020', 'Blik', '55', '3', '2021-06-20', '2021-06-21', 'Wysłano', '20');
 commit;

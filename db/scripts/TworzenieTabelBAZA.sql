@@ -5,19 +5,6 @@ CREATE TABLE miasto
 	CONSTRAINT miasto_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE statusa
-(
-	id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL,
-	nazwa VARCHAR2(150 BYTE) NOT NULL,
-	CONSTRAINT status_pkey PRIMARY KEY (id)
-);
-
-CREATE TABLE formaPlatnosci
-(
-	id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL,
-	nazwa VARCHAR2(150 BYTE),
-	CONSTRAINT formaPlatnosci_pkey PRIMARY KEY (id)
-);
 
 CREATE TABLE formaOdbioru
 (	
@@ -33,17 +20,10 @@ CREATE TABLE typ
 	CONSTRAINT typ_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE marka
-(
-	id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL,
-	nazwa VARCHAR2(150 BYTE) NOT NULL,
-	CONSTRAINT marka_pkey PRIMARY KEY (id)
-);
-
 CREATE TABLE produkt
 (
 	id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL,
-	marka numeric(10) NOT NULL,
+	marka VARCHAR2(20 BYTE) NOT NULL,
 	typ numeric(10) NOT NULL,
 	cena numeric(10) NOT NULL,
 	nazwa VARCHAR2(150 BYTE) NOT NULL,
@@ -51,9 +31,7 @@ CREATE TABLE produkt
 	ilosc_magazyn numeric(10) NOT NULL,
 	CONSTRAINT produkt_pkey PRIMARY KEY (id),
     CONSTRAINT fk_produkt_typ FOREIGN KEY (typ)
-		REFERENCES typ (id),	
-	CONSTRAINT fk_produkt_marka FOREIGN KEY (marka)
-		REFERENCES marka (id)
+		REFERENCES typ (id)
 );
 
 CREATE TABLE klient
@@ -91,18 +69,16 @@ CREATE TABLE zamowienie
 id NUMBER GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL,
 klient numeric(10) NOT NULL,
 nr_zamowienia VARCHAR2(20 BYTE) NOT NULL,
-formaPlatnosci numeric(10) NOT NULL,
+formaPlatnosci VARCHAR2(20 BYTE) NOT NULL,
 wartosc numeric(10) NOT NULL,
 formaOdbioru numeric(10) NOT NULL,
 data_zlozenia DATE NOT NULL,
 data_wyslania DATE,
-status numeric(10) NOT NULL,
+status VARCHAR2(25 BYTE) NOT NULL,
 lista_zak numeric(10) NOT NULL,
 CONSTRAINT zamowienie_pkey PRIMARY KEY (id),
 CONSTRAINT fk_zamowienie_klient FOREIGN KEY (klient)
 		REFERENCES klient (id),
-CONSTRAINT fk_zamowienie_formaPlatnosci FOREIGN KEY (formaPlatnosci)
-		REFERENCES formaPlatnosci(id),
 CONSTRAINT fk_zamowienie_formaOdbioru FOREIGN KEY (formaOdbioru)
 		REFERENCES formaOdbioru(id),
 CONSTRAINT fk_zamowienie_lista_zak FOREIGN KEY (lista_zak)
