@@ -1,11 +1,16 @@
+name: webstore
+
 services:
   backend:
-    build: .\backend
+    build: 
+      context: .\backend
     ports:
       - "8001:8001"
     container_name: fastapi-backend
+    volumes:
+      - .\backend\app:/code/app
     environment:
-      PORT: 8001
+      PORT: 1234
     depends_on:
       - db
 
