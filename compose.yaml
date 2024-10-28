@@ -6,6 +6,8 @@ services:
     container_name: fastapi-backend
     environment:
       PORT: 8001
+    depends_on:
+      - db
 
   frontend:
     build: .\frontend
@@ -14,3 +16,17 @@ services:
     container_name: vuejs-frontend
     depends_on:
       - backend
+
+  db:
+    image: gvenzl/oracle-xe:11.2.0.2-slim-faststart
+    container_name: oracle
+    environment:
+      ORACLE_ALLOW_REMOTE: "true"
+      ORACLE_PASSWORD: password
+    ports:
+      - "1521:1521"
+    volumes:
+      - .\db\oracle_data:/opt/oracle/oradata
+
+volumes:
+  oracle_data:
