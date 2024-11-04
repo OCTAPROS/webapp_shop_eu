@@ -20,5 +20,8 @@
             "gutterIcon": true
         }
     },
-    "todo-tree.tree.showBadges": true
+    "todo-tree.tree.showBadges": true,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/backend/code"
+    ]
 }
