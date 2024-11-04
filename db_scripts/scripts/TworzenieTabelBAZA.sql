@@ -74,7 +74,7 @@ wartosc numeric(10) NOT NULL,
 formaOdbioru numeric(10) NOT NULL,
 data_zlozenia DATE NOT NULL,
 data_wyslania DATE,
-status VARCHAR2(25 BYTE) NOT NULL,
+status VARCHAR2(20 BYTE) NOT NULL,
 lista_zak numeric(10) NOT NULL,
 CONSTRAINT zamowienie_pkey PRIMARY KEY (id),
 CONSTRAINT fk_zamowienie_klient FOREIGN KEY (klient)

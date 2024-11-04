@@ -14,6 +14,8 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <v-otp-input></v-otp-input>
+      <v-date-picker></v-date-picker>
     </div>
   </header>
 
