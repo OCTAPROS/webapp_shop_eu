@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from schemas.blog import BlogCreate, BlogUpdate
+from schemas.order import BlogCreate, BlogUpdate
 from db.models.blog import Blog
 
 
