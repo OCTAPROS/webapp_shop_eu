@@ -1,4 +1,4 @@
-from webfrontend.v1 import route_blog, route_auth
+from web_app.v1 import route_blog, route_auth
 from fastapi import APIRouter
 
 
