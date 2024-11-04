@@ -1,6 +1,21 @@
 name: webstore
 
 services:
+  db:
+    image: gvenzl/oracle-xe
+    container_name: oracle-xe
+    # environment:
+    #   ORACLE_USERNAME: ${ORACLE_USERNAME}
+    #   ORACLE_PASSWORD: ${ORACLE_PASSWORD}
+    #   ORACLE_CHARACTERSET: ${ORACLE_CHARACTERSET}
+    #   ORACLE_PDB: ${ORACLE_PDB}  
+    env_file:
+      - ./db/.env             
+    ports:
+      - "1521:1521"                      
+    volumes:
+      - oracle_data2:/opt/oracle/oradata
+
   backend:
     build: 
       context: .\backend
@@ -10,7 +25,10 @@ services:
     volumes:
       - .\backend\app:/code/app
     environment:
-      PORT: 1234
+      ORACLE_USERNAME: ${ORACLE_USERNAME}
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD} 
+      ORACLE_DSN: ${ORACLE_DSN}
+      ORACLE_PDB: ${ORACLE_PDB}
     depends_on:
       - db
 
@@ -25,16 +43,5 @@ services:
     depends_on:
       - backend
 
-  db:
-    image: gvenzl/oracle-xe:11.2.0.2-slim-faststart
-    container_name: oracle
-    environment:
-      ORACLE_ALLOW_REMOTE: "true"
-      ORACLE_PASSWORD: password
-    ports:
-      - "1521:1521"
-    volumes:
-      - .\db\oracle_data:/opt/oracle/oradata
-
 volumes:
-  oracle_data:
+  oracle_data2:

@@ -2,3 +2,9 @@ fastapi[all]
 oracledb
 uvicorn
 pydantic
+sqlalchemy
+psycopg2
+alembic
+passlib
+python-jose
+bcrypt
