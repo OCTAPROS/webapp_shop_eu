@@ -3,7 +3,6 @@ oracledb
 uvicorn
 pydantic
 sqlalchemy
-cx_Oracle
 psycopg2
 alembic
 passlib
