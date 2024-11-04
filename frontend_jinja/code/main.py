@@ -10,7 +10,7 @@ def start_application():
         version=settings.PROJECT_VERSION
     )
     app.include_router(app_router)
-    app.mount("/static", StaticFiles(directory="/frontend_jinja/code/static"), name="static")
+    app.mount("/static", StaticFiles(directory="web_app/static"), name="static")
     return app
 
 app = start_application()
