@@ -16,5 +16,15 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  server: {
+    host: "0.0.0.0",
+    port: 80,
+    hmr: {
+      clientPort: 80,
+    },
+    watch: {
+      usePolling: true,
+    },
+  },
 })

@@ -37,6 +37,9 @@ services:
     ports:
       - "80:80"
     container_name: vuejs-frontend
+    volumes:
+      - ./frontend/vue-project/src:/app/src
+    command: ["npm", "run", "dev"]
     depends_on:
       - backend
 
