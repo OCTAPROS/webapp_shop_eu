@@ -1,15 +1,24 @@
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from typing import Optional
+from datetime import datetime
 
 
 class ProductCreate(BaseModel):
-    email: EmailStr
-    password: str = Field(..., min_length=4)
+    name: str
+    image_uri: str
+    description: str
+    price: int
+    created_at: datetime
+    modified_at: Optional[datetime] | None
 
 class ProductShow(BaseModel):
     model_config = ConfigDict(from_attributes = True)
     id: int
-    email: EmailStr
-    is_active: bool
+    image_uri: str
+    description: str
+    price: int
+    created_at: datetime
+    modified_at: Optional[datetime] | None
 
 class ProductUpdate(ProductCreate):
     pass

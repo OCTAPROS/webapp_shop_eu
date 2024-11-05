@@ -1,15 +1,20 @@
 from sqlalchemy.orm import Session
 from schemas.product import ProductCreate, ProductUpdate
 from db.models.product import Product
+from datetime import datetime
+import json
 
 
 def create_new_product(product: ProductCreate, db: Session, author_id: int = 1):
     product = Product(        
-        title=product.title,
-        slug=product.slug,
-        content=product.content,
-        author_id=author_id
+        name=product.name,
+        image_uri=product.image_uri,
+        description=product.description,
+        price=product.price,
+        # created_at = datetime.now,
+        # modified_at = datetime.now
     )
+    print("##########################################", dir(product))
     db.add(product)
     db.commit()
     db.refresh(product)

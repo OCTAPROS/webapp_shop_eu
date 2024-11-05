@@ -4,7 +4,6 @@ from sqlalchemy import pool
 from alembic import context
 import sys
 import os
-from sqlmodel import SQLModel
 
 fastapi_app_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "code")
 print(f"fastapi_app_dir: {fastapi_app_dir}")

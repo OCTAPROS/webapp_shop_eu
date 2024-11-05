@@ -11,7 +11,7 @@ from db.repository.user import create_new_user, User
 # from schemas.order import BlogCreate, BlogShow, BlogUpdate
 # from db.session import get_db
 # from db.models.user import User
-from apis.v1.route_login import get_current_user
+from apis.v1.route_auth import get_current_user
 from db.repository.user import create_new_user, get_user_by_id, list_users, update_user_by_id, delete_user_by_id
 
 # router = APIRouter()
