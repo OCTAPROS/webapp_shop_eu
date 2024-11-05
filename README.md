@@ -39,3 +39,8 @@ każda część projektu ma swój plik z dokumentacją
 
 [UC](./_docu/use_case.md)
 [Deployment](./_docu/deployment.md)
+
+
+## Makefile
+https://gnuwin32.sourceforge.net/packages/make.htm
+make-3.81.exe
