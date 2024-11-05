@@ -7,7 +7,7 @@ class ProductCreate(BaseModel):
     name: str
     image_uri: str
     description: str
-    price: int
+    price: float
     created_at: datetime
     modified_at: Optional[datetime] | None
 
@@ -16,7 +16,7 @@ class ProductShow(BaseModel):
     id: int
     image_uri: str
     description: str
-    price: int
+    price: float
     created_at: datetime
     modified_at: Optional[datetime] | None
 
