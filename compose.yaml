@@ -1,21 +1,6 @@
 name: webstore
 
 services:
-  db:
-    image: gvenzl/oracle-xe
-    container_name: oracle-xe
-    # environment:
-    #   ORACLE_USERNAME: ${ORACLE_USERNAME}
-    #   ORACLE_PASSWORD: ${ORACLE_PASSWORD}
-    #   ORACLE_CHARACTERSET: ${ORACLE_CHARACTERSET}
-    #   ORACLE_PDB: ${ORACLE_PDB}  
-    env_file:
-      - ./db/.env             
-    ports:
-      - "1521:1521"                      
-    volumes:
-      - oracle_data2:/opt/oracle/oradata
-
   backend:
     build: 
       context: .\backend
@@ -23,25 +8,17 @@ services:
       - "8001:8001"
     container_name: fastapi-backend
     volumes:
-      - .\backend\app:/code/app
-    environment:
-      ORACLE_USERNAME: ${ORACLE_USERNAME}
-      ORACLE_PASSWORD: ${ORACLE_PASSWORD} 
-      ORACLE_DSN: ${ORACLE_DSN}
-      ORACLE_PDB: ${ORACLE_PDB}
-    depends_on:
-      - db
+      - ./backend/code:/code
+    env_file:
+      - ./backend/.env
 
-  frontend:
-    build: .\frontend
+  frontend_jinja:
+    build: 
+      context: .\frontend_jinja
     ports:
       - "80:80"
-    container_name: vuejs-frontend
+    container_name: fastapi-frontend
     volumes:
-      - ./frontend/vue-project/src:/app/src
-    command: ["npm", "run", "dev"]
+      - ./frontend_jinja/code:/code
     depends_on:
       - backend
-
-volumes:
-  oracle_data2:

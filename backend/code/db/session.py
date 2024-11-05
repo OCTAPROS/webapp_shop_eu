@@ -16,15 +16,3 @@ def get_db() -> Generator:
         yield db
     finally:
         db.close()
-
-
-metadata = MetaData()
-existing_table = Table("klient", metadata, autoload_with=engine)
-print(existing_table.columns.keys())
-
-with engine.connect() as connection:
-    query = select(existing_table).where(existing_table.c.email=="alex.nowak@gmail.com").ALL
-    results = connection.execute(query)
-    for row in results:
-        print(row)
-
