@@ -1,5 +1,0 @@
-python -m pip install dbt-core dbt-oracle
-zrobić makefile
-zajawkę do frontendu 
-
-zobaczyć Markdown PDF extension aby tworzyć dokumentację

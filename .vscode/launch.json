@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "backend",
+            "program": "${workspaceFolder}/backend/app/main.py",
+            "env": {
+                "VARIABLE_NAME": "value123",
+                "ANOTHER_VARIABLE": "another_value123"
+            }
+        }
+    ]
+}

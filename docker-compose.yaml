@@ -1,7 +1,10 @@
 version: '3'
+name: webstore
+
 services:
   backend:
-    build: .
+    build: 
+      context: .\backend
     ports:
       - "8001:8001"
     container_name: fastapi-application
@@ -16,5 +19,19 @@ services:
     volumes:
       - ./frontend:/app 
     container_name: vuejs
+    container_name: fastapi-backend
+    volumes:
+      - ./backend/code:/code
+    env_file:
+      - ./backend/.env
+
+  frontend_jinja:
+    build: 
+      context: .\frontend_jinja
+    ports:
+      - "80:80"
+    container_name: fastapi-frontend
+    volumes:
+      - ./frontend_jinja/code:/code
     depends_on:
       - backend

@@ -16,10 +16,16 @@ import { RouterLink, RouterView } from 'vue-router'
     <router-view></router-view>
   </v-main>
 
-  <v-footer app color="grey lighten-4">
-    <v-col class="text-center">aaa</v-col>
-  </v-footer>
-</v-app>
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+      <v-otp-input></v-otp-input>
+      <v-date-picker></v-date-picker>
+    </div>
+  </header>
+
+  <RouterView />
 </template>
 
 <style scoped>
