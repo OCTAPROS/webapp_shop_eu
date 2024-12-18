@@ -3,11 +3,10 @@
 --WIDOKI
 
 Create or Replace view sprawdzmagazyn as
-select m.nazwa "Marka", t.nazwa "Typ produktu", p.cena, p.nazwa "Nazwa produktu",
+select p.marka "Marka", t.nazwa "Typ produktu", p.cena, p.nazwa "Nazwa produktu",
 p.ean, p.ilosc_magazyn "Stan magazynowy"
-from produkt p, marka m, typ t
+from produkt p, typ t
 where
-p.marka = m.id and
 p.typ = t.id
 order by 
 p.ilosc_magazyn asc;
@@ -17,14 +16,13 @@ p.ilosc_magazyn asc;
 
 
 Create or Replace view podsumowanie_miesiaca as
-select to_char(TRUNC(TO_DATE(zamowienie.data_zlozenia, 'YYYY-MM-DD'))) as "Miesiąc",
-formaPlatnosci.nazwa as "Forma płatności", count(formaPlatnosci.id) as "Ilość transakcji",
-sum(zamowienie.wartosc) || ' ' || 'zł' as "Suma tranzakcji"
-from zamowienie, formaPlatnosci
-WHERE
-zamowienie.formaPlatnosci = formaPlatnosci.id
-group by formaplatnosci.nazwa, TRUNC(TO_DATE(zamowienie.data_zlozenia, 'YYYY-MM-DD'))
-order by TRUNC(TO_DATE(zamowienie.data_zlozenia, 'YYYY-MM-DD')) asc;
+select to_char(TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD'))) as "Miesiąc",
+z.formaPlatnosci as "Forma płatności", count(formaPlatnosci) as "Ilość transakcji",
+sum(z.wartosc) || ' ' || 'zł' as "Suma tranzakcji"
+from zamowienie z
+
+group by formaplatnosci, TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD'))
+order by TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD')) asc;
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 
 --FUNKCJE W SUMIE 5
