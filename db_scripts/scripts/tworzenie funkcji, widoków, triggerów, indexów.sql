@@ -15,15 +15,17 @@ p.ilosc_magazyn asc;
 
 
 
-Create or Replace view podsumowanie_miesiaca as
-select to_char(TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD'))) as "Miesiąc",
-z.formaPlatnosci as "Forma płatności", count(formaPlatnosci) as "Ilość transakcji",
-sum(z.wartosc) || ' ' || 'zł' as "Suma tranzakcji"
-from zamowienie z
+CREATE OR REPLACE VIEW podsumowanie_miesiaca AS
+SELECT 
+    TO_CHAR(TRUNC(data_zlozenia, 'MM'), 'YYYY-MM') AS "Miesiąc",
+    formaPlatnosci AS "Forma płatności",
+    COUNT(*) AS "Ilość transakcji",
+    TO_CHAR(SUM(wartosc), '999G999D99') || ' zł' AS "Suma transakcji"
+FROM zamowienie
+WHERE data_zlozenia IS NOT NULL -- upewniamy się, że data istnieje
+GROUP BY TRUNC(data_zlozenia, 'MM'), formaPlatnosci
+ORDER BY TRUNC(data_zlozenia, 'MM') ASC;
 
-group by formaplatnosci, TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD'))
-order by TRUNC(TO_DATE(z.data_zlozenia, 'YYYY-MM-DD')) asc;
-ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 
 --FUNKCJE W SUMIE 5
 
