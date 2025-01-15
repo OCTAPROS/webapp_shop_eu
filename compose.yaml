@@ -3,7 +3,7 @@ name: webstore
 services:
   backend:
     build: 
-      context: .\backend
+      context: ./backend
     ports:
       - "8001:8001"
     container_name: fastapi-backend
@@ -14,7 +14,7 @@ services:
 
   frontend_jinja:
     build: 
-      context: .\frontend_jinja
+      context: ./frontend_jinja
     ports:
       - "8080:8080"
     container_name: fastapi-frontend
@@ -24,7 +24,7 @@ services:
       - backend
 
   frontend:
-    build: .\frontend
+    build: ./frontend
     ports:
       - "80:80"
     container_name: vuejs-frontend
