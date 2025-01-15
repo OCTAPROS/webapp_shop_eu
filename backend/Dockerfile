@@ -2,7 +2,6 @@ FROM python:3.12
 
 
 WORKDIR /code
-COPY ./code/schemas /code/schemas
 COPY ./code /code
 
 COPY ./requirements.txt /code_pre/requirements.txt
