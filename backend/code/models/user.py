@@ -13,3 +13,6 @@ class User(UserBase, table=True):
     __tablename__ = "USER"
     id: Optional[int] = Field(primary_key=True, index=True)
 
+class UserLogin(SQLModel):
+    username: str
+    password: str

@@ -36,16 +36,16 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post('http://localhost:8001/login', {
-          email: this.email,
+        const response = await axios.post('http://localhost:8001/auth/token', {
+          username: this.email,
           password: this.password,
         });
-        const token = response.data.token;
+        const token = response.data.access_token;
         localStorage.setItem('jwt', token);
-        console('Login successful!');
+        console.log('Login successful!');
       } catch (error) {
         console.error(error);
-        alert('Login failed. Please try again.');
+        console.log('Login failed. Please try again.');
       }
     },
     goToRegister() {
