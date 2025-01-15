@@ -3,12 +3,12 @@ from fastapi import APIRouter, Request, Depends, responses, status, Form
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
-from db.session import get_db
+from db.db_session import get_db
 from schemas.user import UserCreate
 from db.repository.user import create_new_user
 from pydantic import ValidationError
 from core.security import create_access_token
-from apis.v1.route_auth import authenticate_user
+from apis.route_auth import authenticate_user
 
 
 templates = Jinja2Templates(directory="webfrontend/templates")

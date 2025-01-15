@@ -15,8 +15,8 @@ fastapi_app_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(_
 sys.path.append(fastapi_app_dir)
  
 from db.base import Base
-from db.session import get_db
-from apis.base import api_router
+from db.db_session import get_db
+from apis._base import api_router
  
  
 def start_application():

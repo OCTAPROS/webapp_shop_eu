@@ -11,14 +11,3 @@ services:
       - ./backend/code:/code
     env_file:
       - ./backend/.env
-
-  frontend_jinja:
-    build: 
-      context: .\frontend_jinja
-    ports:
-      - "80:80"
-    container_name: fastapi-frontend
-    volumes:
-      - ./frontend_jinja/code:/code
-    depends_on:
-      - backend
