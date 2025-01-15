@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container  class="login-container">
     <v-form @submit.prevent="login">
       <v-text-field
         label="Email"
@@ -15,7 +15,10 @@
         required
       ></v-text-field>
 
-      <v-btn color="primary" type="submit">Login</v-btn>
+      <div class="flex-column">
+        <v-btn color="primary" type="submit">Login</v-btn>
+        <v-btn color="secondary" @click="goToRegister">Rejestracja</v-btn>
+      </div>
     </v-form>
   </v-container>
 </template>
@@ -45,6 +48,18 @@ export default {
         alert('Login failed. Please try again.');
       }
     },
+    goToRegister() {
+      this.$router.push('/register');
+    },
   },
 };
 </script>
+
+<style>
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+</style>

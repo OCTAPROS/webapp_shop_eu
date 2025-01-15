@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="login-container">
     <v-form @submit.prevent="register">
       <v-text-field
         label="Name"
@@ -22,6 +22,8 @@
       ></v-text-field>
 
       <v-btn color="primary" type="submit">Register</v-btn>
+      <v-btn color="secondary" @click="goToLogin">Powrót do logowania</v-btn>
+      
     </v-form>
   </v-container>
 </template>
@@ -51,6 +53,18 @@ export default {
         alert('Registration failed. Please try again.');
       }
     },
+    goToLogin() {
+      this.$router.push('/login');
+    },
   },
 };
 </script>
+
+<style>
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+</style>

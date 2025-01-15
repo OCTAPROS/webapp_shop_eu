@@ -1,13 +1,19 @@
 <script setup lang="ts">
-
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
-    <v-container class="text-center">
-    <h1>Witamy w naszym sklepie online!</h1>
-    <p>Oferujemy szeroki wybór produktów w atrakcyjnych cenach.</p>
-  </v-container>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>Sklep Online</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn to="/">Strona główna</v-btn>
+      <v-btn to="/products">Produkty</v-btn>
+      <v-btn to="/cart">Koszyk</v-btn>
+    </v-app-bar>
+    <div>
+      <router-view></router-view>
+    </div>
+
   </main>
 </template>
