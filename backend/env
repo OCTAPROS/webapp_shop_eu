@@ -1,8 +1,0 @@
-PROJECT_NAME="Webbshopz API"
-PROJECT_VERSION="v1"
-
-JWT_SECRET_KEY=supersecret123
-
-ORACLE_DB_USERNAME=webstore
-ORACLE_DB_PASSWORD=6GuVk8ADDDawRX2P
-ORACLE_DB_DSN=(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=adb.eu-stockholm-1.oraclecloud.com))(connect_data=(service_name=g9b34ba6c531a5c_olks5kc06813coza_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
