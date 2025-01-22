@@ -10,14 +10,15 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
       children: [
         {
-          path: '/products',
-          name: 'products',
-          component: () => import('../views/ProductListView.vue')
-        },
-        {
           path: '/cart',
           name: 'cart',
           component: () => import('../views/CartView.vue'),
+          
+        },
+        {
+          path: '/account',
+          name: 'account',
+          component: () => import('../views/AccountView.vue'),
           meta: { requiresAuth: true },
         },
       ]

@@ -1,19 +1,9 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
-<v-app>
-
-  <v-main>
-    <router-view></router-view>
-  </v-main>
-</v-app>
-
+  <v-app>
+    <router-view />
+  </v-app>
 </template>
 
-<style scoped>
-.text {
-  font-size: large;
-}
-</style>
+<script lang="ts" setup>
+
+</script>
