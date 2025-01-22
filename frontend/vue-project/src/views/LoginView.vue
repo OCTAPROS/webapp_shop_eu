@@ -39,6 +39,11 @@ export default {
         const response = await axios.post('http://localhost:8001/auth/token', {
           username: this.email,
           password: this.password,
+          grant_type: "",
+          password:  "",
+          scope: "",
+          client_id: "",
+          client_secret: "",
         });
         const token = response.data.access_token;
         localStorage.setItem('jwt', token);
