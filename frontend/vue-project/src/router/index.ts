@@ -5,25 +5,28 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/a',
       name: 'Home',
       component: () => import('../views/HomeView.vue'),
-      children: [
-        {
-          path: '/cart',
-          name: 'cart',
-          component: () => import('../views/CartView.vue'),
-          
-        },
-        {
-          path: '/account',
-          name: 'account',
-          component: () => import('../views/AccountView.vue'),
-          meta: { requiresAuth: true },
-        },
-      ]
     },
-    
+    {
+      path: '/product',
+      name: 'Home',
+      component: () => import('../views/ProductView.vue'),
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('../views/CartView.vue'),
+          
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: () => import('../views/AccountView.vue'),
+      meta: { requiresAuth: true },
+    },
+
     { 
       path: '/login',
       name: 'Login',
