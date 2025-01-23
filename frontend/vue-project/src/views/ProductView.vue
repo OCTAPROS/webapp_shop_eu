@@ -5,7 +5,7 @@
       <!-- Obraz produktu -->
       <v-col cols="12" md="6">
         <v-img
-          :src="product.image"
+          :src="'https://placehold.co/400x400'"
           :alt="product.name"
           class="rounded"
           aspect-ratio="1"
@@ -59,86 +59,46 @@
     <v-row class="my-8">
       <v-col cols="12">
         <h2 class="text-h5 mb-4">Opis produktu</h2>
-        <p>{{ product.longDescription }}</p>
+        <p>{{ product?.longDescription || lorem }}</p>
       </v-col>
     </v-row>
-
+    
     <!-- Sugerowane produkty -->
-    <v-row class="my-8">
-      <v-col cols="12">
-        <h2 class="text-h5 mb-4">Sugerowane produkty</h2>
-      </v-col>
-      <v-col
-        v-for="suggested in suggestedProducts"
-        :key="suggested.id"
-        cols="12"
-        md="4"
-      >
-        <v-card>
-          <v-img
-            :src="suggested.image"
-            :alt="suggested.name"
-            aspect-ratio="1.5"
-          />
-          <v-card-title>{{ suggested.name }}</v-card-title>
-          <v-card-subtitle>{{ suggested.price }} zł</v-card-subtitle>
-          <v-card-actions>
-            <v-btn color="primary" text>Wyświetl</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+    <BestsellerComponent />
   </v-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      quantity: 1,
-      product: {
-        id: 1,
-        name: "Przykładowy produkt",
-        shortDescription: "Krótki opis produktu",
-        longDescription: "Tutaj znajduje się szczegółowy opis produktu.",
-        price: 99.99,
-        image: "https://placehold.co/400x400",
-      },
-      suggestedProducts: [
-        {
-          id: 2,
-          name: "Produkt 2",
-          price: 49.99,
-          image: "https://placehold.co/400x300",
-        },
-        {
-          id: 3,
-          name: "Produkt 3",
-          price: 79.99,
-          image: "https://placehold.co/400x300",
-        },
-        {
-          id: 4,
-          name: "Produkt 4",
-          price: 129.99,
-          image: "https://placehold.co/400x300",
-        },
-      ],
-    };
-  },
-  methods: {
-    increaseQuantity() {
-      this.quantity = Math.min(this.quantity + 1, 99); // Maksymalna ilość 99
-    },
-    decreaseQuantity() {
-      this.quantity = Math.max(this.quantity - 1, 1); // Minimalna ilość 1
-    },
-    addToCart() {
-      console.log(`Dodano ${this.quantity} szt. produktu do koszyka`);
-      // Tutaj możesz obsłużyć logikę dodawania do koszyka
-    },
-  },
-};
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useProductStore } from '@/stores/productStore';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import BestsellerComponent from '@/components/BestsellerComponent.vue';
+
+const productStore = useProductStore();
+const route = useRoute(); 
+
+const productId = computed(() => Number(route.params.id));
+
+const product = computed(() =>
+  productStore.availableProducts.find((item: any) => item.id === productId.value)
+);
+
+const quantity = ref(1)
+
+const lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consequatur in rerum labore voluptatum dolorum ullam a aliquam voluptatibus ipsum debitis, laudantium fugit excepturi? Voluptatum, ipsa! Iure libero saepe exercitationem, reiciendis debitis quis adipisci corrupti id dicta placeat vitae dolore beatae! Asperiores amet in ex atque, illum soluta aliquid quos!'
+
+function increaseQuantity() {
+  quantity.value = Math.min(quantity.value + 1, 99);
+}
+function decreaseQuantity() {
+  quantity.value = Math.max(quantity.value - 1, 1);
+}
+function addToCart() {
+  console.log(`Dodano ${quantity.value} szt. produktu do koszyka`);
+}
+
+
 </script>
 
 <style scoped>

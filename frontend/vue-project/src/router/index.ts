@@ -5,40 +5,49 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/a',
+      path: '/',
       name: 'Home',
       component: () => import('../views/HomeView.vue'),
     },
     {
-      path: '/product',
-      name: 'Home',
+      path: '/products',
+      name: 'ProductList',
+      component: () => import('../views/ProductListView.vue'),
+    },
+    {
+      path: '/product/:id',
+      name: 'Product',
       component: () => import('../views/ProductView.vue'),
     },
     {
       path: '/cart',
-      name: 'cart',
+      name: 'Cart',
       component: () => import('../views/CartView.vue'),
-          
     },
     {
       path: '/account',
-      name: 'account',
+      name: 'Account',
       component: () => import('../views/AccountView.vue'),
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true }, 
     },
-
-    { 
+    {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/LoginView.vue'),
     },
-    { 
+    {
       path: '/register',
       name: 'Register',
-      component: () => import('../views/RegisterView.vue')
+      component: () => import('../views/RegisterView.vue'),
     },
-  ]
-})
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('../views/NotFoundView.vue'),
+    },
+  ],
+});
+
 
 // Navigation Guard for protected routes
 router.beforeEach((to, from, next) => {
