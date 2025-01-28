@@ -15,9 +15,9 @@
         required
       ></v-text-field>
 
-      <div class="flex-column">
-        <v-btn color="primary" type="submit">Login</v-btn>
-        <v-btn color="secondary" @click="goToRegister">Rejestracja</v-btn>
+      <div class="d-flex flex-column gap-4">
+        <v-btn color="primary" type="submit" class="my-2">Login</v-btn>
+        <router-link to="/register" class="mt-2">Rejestracja</router-link>
       </div>
     </v-form>
   </v-container>
@@ -53,9 +53,6 @@ export default {
         console.log('Login failed. Please try again.');
       }
     },
-    goToRegister() {
-      this.$router.push('/register');
-    },
   },
 };
 </script>
@@ -65,6 +62,7 @@ export default {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
+  min-height: 60vh;
 }
 
 </style>

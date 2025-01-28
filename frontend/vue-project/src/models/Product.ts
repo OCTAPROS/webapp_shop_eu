@@ -6,6 +6,7 @@ export class Product {
   ean: string;
   stock_count: number;
   id: number;
+  longDescription: string;
 
   constructor(item:Product) {
     this.marka = item.marka;
@@ -15,5 +16,6 @@ export class Product {
     this.ean = item.ean;
     this.stock_count = item.stock_count;
     this.id = item.id;
+    this.longDescription = item.longDescription;
   }
 }

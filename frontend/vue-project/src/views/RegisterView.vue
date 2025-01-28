@@ -21,8 +21,10 @@
         required
       ></v-text-field>
 
-      <v-btn color="primary" type="submit">Register</v-btn>
-      <v-btn color="secondary" @click="goToLogin">Powrót do logowania</v-btn>
+      <div class="d-flex flex-column gap-4">
+        <v-btn color="primary" type="submit" class="my-2">Rejestracja</v-btn>
+        <router-link to="/login" class="mt-2">Powrót do logowania</router-link>
+      </div>
       
     </v-form>
   </v-container>
@@ -65,6 +67,7 @@ export default {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
+  min-height: 60vh;
 }
 
 </style>
