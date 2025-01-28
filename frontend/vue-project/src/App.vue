@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TopBarComponent />
+    <TopBarComponent :quantity="quant" />
     <v-main>
      
 
@@ -12,18 +12,16 @@
   </v-app>
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
 import TopBarComponent from './components/TopBarComponent.vue';
 import FotterComponent from './components/FotterComponent.vue';
+import { useCartStore } from '@/stores/cart';
 
+const cartStore = useCartStore();
 
-export default {
-  data() {
-    return {
-      
-    };
-  },
-};
+const quant = computed(()=>cartStore.totalItems)
+
 </script>
 
 <style scoped>

@@ -55,8 +55,8 @@
             sm="6"
             lg="4"
           >
-          <router-link :to="`/product/${product.id}`" class="product-link">
             <v-card class="product-link" >
+              <router-link :to="`/product/${product.id}`" class="product-link">
               <v-img
                 :src="'https://placehold.co/400x300'"
                 :alt="product.name"
@@ -66,11 +66,12 @@
               />
               <v-card-title>{{ product.name }}</v-card-title>
               <v-card-subtitle>{{ product.price }} zł</v-card-subtitle>
+            </router-link>
               <v-card-actions>
-                <v-btn color="primary" text>Dodaj do koszyka</v-btn>
+                <v-btn color="primary" text @click="cartStore.addToCart(product, 1)">Dodaj do koszyka</v-btn>
               </v-card-actions>
             </v-card>
-          </router-link>
+          
           </v-col>
         </v-row>
 
@@ -87,9 +88,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useProductStore } from '@/stores/productStore';
 import { RouterLink, RouterView } from 'vue-router';
+import { useCartStore } from '@/stores/cart';
+
+const cartStore = useCartStore();
 
 const productStore = useProductStore();
 

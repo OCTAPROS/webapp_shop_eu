@@ -33,7 +33,7 @@ export const useProductStore = defineStore('product', {
 
   getters: {
     availableProducts(state) {
-      return state.products.filter((product) => product.stock_count > 0);
+      return state.products;
     },
 
 

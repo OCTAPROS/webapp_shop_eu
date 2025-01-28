@@ -1,6 +1,6 @@
 import { registerPlugins } from '@/plugins'
-import App from './App.vue'
 import { createApp } from 'vue'
+import App from './App.vue'
 
 export const BASE_URL: string = 'http://localhost:8001'
 

@@ -19,7 +19,7 @@
           <v-card-title>{{ product.name }}</v-card-title>
           <v-card-subtitle>{{ product.price }} zł</v-card-subtitle>
           <v-card-actions>
-            <v-btn color="primary" text>Dodaj do koszyka</v-btn>
+            <v-btn color="primary" text >Dodaj do koszyka</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

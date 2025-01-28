@@ -10,15 +10,26 @@
       <v-col cols="auto">
         <v-btn text to="/products">Produkty</v-btn>
         <v-btn text to="/login">Login</v-btn>
-        <v-btn text to="/cart">Koszyk</v-btn>
+        <v-btn text to="/cart" >Koszyk ({{ props.quantity }})</v-btn>
       </v-col>
     </v-row>
   </v-container>
 </v-app-bar>
 </template>
 
-<script steup>
+<script setup>
 import { RouterLink } from 'vue-router';
+
+const props = defineProps({
+  quantity: Number
+
+})
+
+// const cartStore = useCartStore();
+
+// onMounted(() => {
+//   const cartQuantity = computed(() => cartStore.totalItems)
+// })
 
 </script>
 <style>

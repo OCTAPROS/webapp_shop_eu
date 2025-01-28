@@ -6,7 +6,7 @@
       <v-col cols="12" md="6">
         <v-img
           :src="'https://placehold.co/400x400'"
-          :alt="product.name"
+          :alt="product?.name"
           class="rounded"
           aspect-ratio="1"
         />
@@ -14,9 +14,9 @@
 
       <!-- Szczegóły produktu -->
       <v-col cols="12" md="6">
-        <h1 class="text-h4">{{ product.name }}</h1>
-        <p class="text-subtitle-1 text-gray">{{ product.shortDescription }}</p>
-        <p class="text-h5 font-weight-bold mt-4">{{ product.price }} zł</p>
+        <h1 class="text-h4">{{ product?.name }}</h1>
+        <p class="text-subtitle-1 text-gray">{{ product?.longDescription || lorem }}</p>
+        <p class="text-h5 font-weight-bold mt-4">{{ product?.price }} zł</p>
         <v-divider class="my-4" />
 
         <!-- Input zmiany ilości produktów -->
@@ -48,7 +48,7 @@
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
-          <v-btn class="ml-5" color="primary" @click="addToCart">
+          <v-btn v-if="product" class="ml-5" color="primary" @click="addToCart(product)">
             Dodaj do koszyka
           </v-btn>
         </div>
@@ -74,14 +74,17 @@ import { useProductStore } from '@/stores/productStore';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import BestsellerComponent from '@/components/BestsellerComponent.vue';
+import { useCartStore } from '../stores/cart';
+import type { Product } from '@/models/Product';
 
 const productStore = useProductStore();
 const route = useRoute(); 
+const cartStore = useCartStore();
 
 const productId = computed(() => Number(route.params.id));
 
 const product = computed(() =>
-  productStore.availableProducts.find((item: any) => item.id === productId.value)
+  productStore.availableProducts.find((item) => item.id === productId.value)
 );
 
 const quantity = ref(1)
@@ -94,8 +97,8 @@ function increaseQuantity() {
 function decreaseQuantity() {
   quantity.value = Math.max(quantity.value - 1, 1);
 }
-function addToCart() {
-  console.log(`Dodano ${quantity.value} szt. produktu do koszyka`);
+function addToCart(product: Product) {
+  cartStore.addToCart(product, quantity.value);
 }
 
 
