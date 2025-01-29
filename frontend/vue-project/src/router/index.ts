@@ -45,6 +45,18 @@ const router = createRouter({
       name: 'NotFound',
       component: () => import('../views/NotFoundView.vue'),
     },
+    {
+      path: '/admin',
+      component: () => import('../views/admin/AdminPanel.vue'),
+      // meta: { requiresAuth: true },
+      children: [
+        {
+          path: 'products',
+          name: 'AdminProducts',
+          component: () => import('../views/admin/AdminProductList.vue'),
+        },
+      ],
+    },
   ],
 });
 
@@ -55,7 +67,7 @@ router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('jwt');
     if (token) {
       // Opcjonalnie: można dodać weryfikację tokena, np. sprawdzając datę wygaśnięcia
-      next();
+      next('/admin');
     } else {
       alert('Zaloguj się aby otworzyć tą stronę ');
       next({ name: 'Login' });

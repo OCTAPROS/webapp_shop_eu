@@ -7,7 +7,7 @@
       <router-view />
 
 
-    <FotterComponent />
+    <!-- <FotterComponent /> -->
   </v-main>
   </v-app>
 </template>
@@ -15,7 +15,7 @@
 <script setup>
 import { computed } from 'vue';
 import TopBarComponent from './components/TopBarComponent.vue';
-import FotterComponent from './components/FotterComponent.vue';
+// import FotterComponent from './components/FotterComponent.vue';
 import { useCartStore } from '@/stores/cart';
 
 const cartStore = useCartStore();

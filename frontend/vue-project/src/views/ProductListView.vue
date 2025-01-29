@@ -105,15 +105,7 @@ onMounted(() => {
   productStore.fetchProducts();
 });
 
-// Lista produktów
-// products: [
-//   { id: 1, name: "Produkt 1", category: "Kategoria 1", price: 50, image: "https://placehold.co/400x300" },
-//   { id: 2, name: "Produkt 2", category: "Kategoria 2", price: 120, image: "https://placehold.co/400x300" },
-//   { id: 3, name: "Produkt 3", category: "Kategoria 1", price: 200, image: "https://placehold.co/400x300" },
-//   { id: 4, name: "Produkt 4", category: "Kategoria 3", price: 300, image: "https://placehold.co/400x300" },
-//   { id: 5, name: "Produkt 5", category: "Kategoria 2", price: 80, image: "https://placehold.co/400x300" },
-//   // Dodaj więcej produktów, aby przetestować paginację
-// ],
+
 // Filtry
 const  filters = {
   category: null,

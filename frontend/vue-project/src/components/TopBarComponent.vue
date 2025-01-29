@@ -11,6 +11,7 @@
         <v-btn text to="/products">Produkty</v-btn>
         <v-btn text to="/login">Login</v-btn>
         <v-btn text to="/cart" >Koszyk ({{ props.quantity }})</v-btn>
+        <v-btn text to="/admin" >Panel Administracyjny </v-btn>
       </v-col>
     </v-row>
   </v-container>
