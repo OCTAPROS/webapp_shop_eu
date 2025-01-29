@@ -4,6 +4,7 @@
         <v-navigation-drawer permanent>
           <v-list>
             <v-list-item to="/admin/products" title="Zarządzanie produktami"></v-list-item>
+            <v-list-item to="/admin/customers" title="Zarządzanie Klientami"></v-list-item>
           </v-list>
         </v-navigation-drawer>
 
