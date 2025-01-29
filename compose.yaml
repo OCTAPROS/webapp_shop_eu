@@ -12,17 +12,6 @@ services:
     env_file:
       - ./backend/.env
 
-  frontend_jinja:
-    build: 
-      context: ./frontend_jinja
-    ports:
-      - "8080:8080"
-    container_name: fastapi-frontend
-    volumes:
-      - ./frontend_jinja/code:/code
-    depends_on:
-      - backend
-
   frontend:
     build: ./frontend
     ports:
