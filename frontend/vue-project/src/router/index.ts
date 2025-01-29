@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('jwt');
     if (token) {
       // Opcjonalnie: można dodać weryfikację tokena, np. sprawdzając datę wygaśnięcia
-      next('/admin');
+      next();
     } else {
       alert('Zaloguj się aby otworzyć tą stronę ');
       next({ name: 'Login' });

@@ -20,7 +20,7 @@
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.stock_count }}</td>
-          <td>{{ product.ean }} zł</td>
+          <td>{{ product.ean }}</td>
           <td>{{ product.price }} zł</td>
           <td>
             <v-btn icon color="blue" @click="openDialog(product)">
