@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from models.user import User
 from sqlmodel import Session, select
 
-from db.db_session import get_dbsession
+from db.db_session import get_session
 from models.user import User, UserLogin
 from core.security import create_access_token, Hasher
 from core.config import settings
@@ -17,7 +17,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 
 @router.post("/token", status_code=status.HTTP_200_OK)
-def login_for_access_token(user_login_data: UserLogin , db_session: Session = Depends(get_dbsession)):
+def login_for_access_token(user_login_data: UserLogin , db_session: Session = Depends(get_session)):
     user: User = authenticate_user(user_email=user_login_data.username, password=user_login_data.password, db_session=db_session)
     if not user:
         raise HTTPException(
@@ -28,7 +28,7 @@ def login_for_access_token(user_login_data: UserLogin , db_session: Session = De
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-def authenticate_user(user_email: str, password: str, db_session: Session = Depends(get_dbsession)):
+def authenticate_user(user_email: str, password: str, db_session: Session = Depends(get_session)):
     user: User = db_session.exec(select(User).where(User.email == user_email)).one_or_none()
     if not user:
         return False
@@ -37,7 +37,7 @@ def authenticate_user(user_email: str, password: str, db_session: Session = Depe
     return user
 
 
-def get_current_user(token: str = Depends(oauth2_scheme), db_session: Session = Depends(get_dbsession)):
+def get_current_user(token: str = Depends(oauth2_scheme), db_session: Session = Depends(get_session)):
     credentials_exception = HTTPException(
         status_code = status.HTTP_401_UNAUTHORIZED,
         detail = "Could not validate credentials. Try to login again"

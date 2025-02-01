@@ -8,7 +8,7 @@ services:
       - "8001:8001"
     container_name: fastapi-backend
     volumes:
-      - ./backend/code:/code
+      - ./backend/src:/src
     env_file:
       - ./backend/.env
 
