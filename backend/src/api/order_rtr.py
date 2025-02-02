@@ -17,10 +17,12 @@ def get_all_orders(skip: int = 0, limit = 10, db_session: Session = Depends(get_
 @router.get("/{id}", response_model=Order)
 def get_order_by_id(id:int, db_session: Session = Depends(get_session)):
     order = db_session.get(Order, id)
+    print(order.__dict__)
     if not order:
         raise HTTPException(detail=f"Order with id {id} does not exist", status_code=status.HTTP_404_NOT_FOUND)
-    # product_public = ProductPublic(**product.model_dump())
-    # print(product_public)
+    for r in order.order_rows:
+        print(r)
+    # print(order.order_rows.__dict__)
     return order
 
 @router.post("/", response_model=Order, status_code=status.HTTP_201_CREATED)
