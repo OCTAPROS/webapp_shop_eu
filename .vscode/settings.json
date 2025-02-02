@@ -22,6 +22,10 @@
     },
     "todo-tree.tree.showBadges": true,
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/backend/code"
-    ]
+        "${workspaceFolder}/backend/code",
+        "${workspaceFolder}/backend/src"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true
+    }
 }

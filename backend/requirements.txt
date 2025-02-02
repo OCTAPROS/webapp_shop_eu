@@ -2,7 +2,6 @@ fastapi[all]
 sqlmodel
 oracledb
 uvicorn
-psycopg2
 passlib
 python-jose
 bcrypt
