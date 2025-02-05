@@ -7,6 +7,24 @@ from decimal import Decimal
 from typing import List
 
 
+# class OrderRowInsertModel(SQLModel):
+#     product_id: int = Field(Integer, nullable=False)
+#     quantity: int = Field(Integer, nullable=False)
+
+# class OrderInsertModel(SQLModel):
+#     order_rows: list[OrderRowInsertModel]
+
+#     customer_id: int = Field(Integer, nullable=False)
+#     order_number: str | None = Field(String, nullable=True)
+#     # # payment_method: str | None = Field(String, nullable=True)
+#     # # delivery_method: int | None = Field(Integer, nullable=True)
+#     # # order_date: date | None = Field(Date)
+#     # # delivery_date: date | None = Field(Date)
+#     status: str | None = Field(String(100))
+
+#     # order_rows = List[OrderRowInsertModel]
+
+
 
 
 class Order(SQLModel, table=True):
@@ -16,17 +34,16 @@ class Order(SQLModel, table=True):
     customer_id: int = Field(sa_column=Column(Integer, nullable=False))
     order_number: str | None = Field(sa_column=Column(String, nullable=True))
     payment_method: str | None = Field(sa_column=Column(String, nullable=True))
-    value: Decimal | None = Field(sa_column=Column(Numeric, nullable=True, default=0))
-    delivery_method: str | None = Field(sa_column=Column(String, nullable=True))
+    delivery_method: int | None = Field(sa_column=Column(Integer, nullable=True))
     order_date: date | None = Field(sa_column=Column(Date))
     delivery_date: date | None = Field(sa_column=Column(Date))
     status: str | None = Field(sa_column=Column(String(100), default="NEW"))
     # updated_at: datetime | None = Field(sa_column=Column(DateTime, nullable=True))
     # created_at: datetime | None = Field(sa_column=Column(DateTime, default=datetime.now))
 
-    order_rows: list["OrderRow"] = Relationship(back_populates="order")
-    
+    # order_rows: list["OrderRow"] = Relationship(back_populates="order")
 
+    
 class OrderRow(SQLModel, table=True):
     __tablename__ = "order_row_t"
 

@@ -5,3 +5,4 @@ uvicorn
 passlib
 python-jose
 bcrypt
+pyjwt

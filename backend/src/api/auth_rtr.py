@@ -1,60 +1,59 @@
-from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
-from jose import jwt, JWTError
-from typing import Annotated
 from fastapi import APIRouter, Depends, status, HTTPException
-from models.user import User
-from sqlmodel import Session, select
-
 from db.db_session import get_session
-from models.user import User, UserLogin
-from core.security import create_access_token, Hasher
+from models.user import User, UserLoginModel, UserPublicModel
 from core.config import settings
-
+from typing import List
+from auth.utils import verify_password, create_access_token
+from datetime import timedelta
+from sqlmodel import Session, select
+from fastapi.responses import JSONResponse
+from auth.dependencies import get_current_user
 
 router = APIRouter()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
+@router.post("/token")
+def login_user(login_data: UserLoginModel, db_session: Session = Depends(get_session), status_code=status.HTTP_200_OK):
+    user: User = db_session.exec(select(User).where(User.email == login_data.username)).one_or_none()
+    if user:
+        password_valid = verify_password(login_data.password, user.password_hash)
 
-@router.post("/token", status_code=status.HTTP_200_OK)
-def login_for_access_token(user_login_data: UserLogin , db_session: Session = Depends(get_session)):
-    user: User = authenticate_user(user_email=user_login_data.username, password=user_login_data.password, db_session=db_session)
-    if not user:
-        raise HTTPException(
-            detail=f"Incorrect email or password",
-            status_code=status.HTTP_401_UNAUTHORIZED
-        )
-    access_token = create_access_token(data={"sub": user.email})
-    return {"access_token": access_token, "token_type": "bearer"}
+        if password_valid:
+            access_token = create_access_token(
+                user_data={
+                    "email": user.email,
+                    "user_id": user.id,
+                    "customer_id": user.customer_id
+                }
+            )
 
-
-def authenticate_user(user_email: str, password: str, db_session: Session = Depends(get_session)):
-    user: User = db_session.exec(select(User).where(User.email == user_email)).one_or_none()
-    if not user:
-        return False
-    if not Hasher.verify_password(password, user.password):
-        return False
-    return user
-
-
-def get_current_user(token: str = Depends(oauth2_scheme), db_session: Session = Depends(get_session)):
-    credentials_exception = HTTPException(
-        status_code = status.HTTP_401_UNAUTHORIZED,
-        detail = "Could not validate credentials. Try to login again"
-    )
-    try:
-        payload = jwt.decode(token, settings.JWT_SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
-        email: str = payload.get("sub")
-        if email is None:
-            raise credentials_exception
-    except JWTError:
-        raise credentials_exception
-    user: User = db_session.exec(select(User).where(User.email == email)).first()
-    if user is None:
-        raise credentials_exception
-    return user
+            return JSONResponse(
+                content={
+                    "message": "Login successful",
+                    "access_token": access_token,
+                    # "refresh_token": refresh_token,
+                    "user": {
+                        "email": user.email,
+                        "user_id": user.id,
+                        "customer_id": user.customer_id
+                    }
+                }
+            )
+        
+    raise HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail="Invalid email or password"
+    ) 
         
 
-@router.get("/me", response_model=User)
-async def read_users_me(current_user: Annotated[User, Depends(get_current_user)], ):
+@router.get("/me", response_model=UserPublicModel)
+def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
+
+
+@router.get("/users", response_model=List[UserPublicModel])
+def get_all_users(skip: int = 0, limit = 10, db_session: Session = Depends(get_session)):
+    objects = db_session.exec(select(User).offset(skip).limit(limit)).all()
+    if not objects:
+        raise HTTPException(detail=f"There are no users for selected criteria", status_code=status.HTTP_404_NOT_FOUND)
+    return objects

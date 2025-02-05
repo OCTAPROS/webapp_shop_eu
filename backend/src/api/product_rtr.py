@@ -7,6 +7,7 @@ from typing import List
 
 router = APIRouter()
 
+
 @router.get("/", response_model=List[Product])
 def get_all_products(skip: int = 0, limit = 10, db_session: Session = Depends(get_session)):
     products = db_session.exec(select(Product).offset(skip).limit(limit)).all()

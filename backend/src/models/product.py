@@ -14,7 +14,6 @@ class Product(SQLModel, table=True):
     price: Decimal = Field(sa_column=Column(Numeric, nullable=False, default=0))  
     name: str = Field(sa_column=Column(String(150)))
     ean: str = Field(sa_column=Column(String(13), nullable=False))
-    updated_at: datetime | None = Field(sa_column=Column(DateTime, nullable=True))
-    created_at: datetime = Field(sa_column=Column(DateTime, default=datetime.now))
-    
+    # updated_at: datetime | None = Field(sa_column=Column(DateTime, nullable=True))
+    # created_at: datetime = Field(sa_column=Column(DateTime, default=datetime.now))    
     
