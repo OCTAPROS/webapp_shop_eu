@@ -4,8 +4,7 @@ from sqlalchemy.orm import relationship
 import uuid
 from datetime import date, datetime
 from typing import List, Optional
-import oracledb
-
+# from models.customer import Customer
 
 
 class User(SQLModel, table=True):
@@ -13,11 +12,31 @@ class User(SQLModel, table=True):
 
     id: int | None = Field(sa_column=Column(Integer, primary_key=True))
     email: str = Field(sa_column=Column(String, nullable=True))
-    password: str = Field(sa_column=Column(String, nullable=True))
+    password_hash: str = Field(sa_column=Column(String, nullable=True))
     is_superuser: bool = Field(sa_column=Column(ora.NUMBER(1,0), default=0))
     is_active: bool = Field(sa_column=Column(ora.NUMBER(1,0), default=0))
+    customer_id: int | None = Field(sa_column=Column(Integer, ForeignKey("customer_t.id"), nullable=True))
+
+    # as_customer: Customer = Relationship(back_populates="as_user")
 
 
-class UserLogin(SQLModel):
+# class Role(SQLModel, table=True):
+#     __tablename__ = "user_t"
+
+#     id: int | None = Field(sa_column=Column(Integer, primary_key=True))
+#     email: str = Field(sa_column=Column(String, nullable=True))
+#     password: str = Field(sa_column=Column(String, nullable=True))
+#     is_superuser: bool = Field(sa_column=Column(ora.NUMBER(1,0), default=0))
+#     is_active: bool = Field(sa_column=Column(ora.NUMBER(1,0), default=0))
+
+
+class UserPublicModel(SQLModel):
+    id: int | None #= Field(sa_column=Column(Integer, primary_key=True))
+    email: str #= Field(sa_column=Column(String, nullable=True))
+    is_superuser: bool #= Field(sa_column=Column(ora.NUMBER(1,0), default=0))
+    is_active: bool #= Field(sa_column=Column(ora.NUMBER(1,0), default=0))
+    customer_id: int | None #= Field(sa_column=Column(Integer, ForeignKey("customer_t.id"), nullable=True))
+
+class UserLoginModel(SQLModel):
     username: str
     password: str
