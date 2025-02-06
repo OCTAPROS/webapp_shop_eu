@@ -6,7 +6,7 @@ left to right direction
 actor Klient as k
 package "Pracownicy sklepu" {
   actor Pracownik as p
-  actor "Boss" as pb
+  actor "Menadżer" as pb
   pb --> p
 }
 package "Sklep internetowy" {
