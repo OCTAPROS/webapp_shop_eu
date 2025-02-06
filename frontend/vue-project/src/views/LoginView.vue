@@ -55,6 +55,9 @@ export default {
     },
   },
 };
+
+// boczek@gmail.com
+// Pass123!
 </script>
 
 <style>
