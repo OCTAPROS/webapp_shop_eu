@@ -7,13 +7,13 @@ from typing import List, Optional
 # from models.customer import Customer
 
 
-class Report1(SQLModel, table=False):
-    __tablename__ = "aaa"
+class Report1(SQLModel, table=True):
+    __tablename__ = "report1_v"
 
     id: int =  Field(primary_key=True)
     customer_id: int 
     order_number: str | None  
-    payment_method2: str | None 
+    payment_method: str | None 
     status: str | None  
     order_value: float | None
 

@@ -1,0 +1,3 @@
+GRANT CREATE VIEW TO username;
+GRANT ALTER ANY VIEW TO username;
+GRANT DROP ANY VIEW TO username;

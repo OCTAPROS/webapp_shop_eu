@@ -16,7 +16,7 @@ def get_all_dictionary_names(db_session: Session = Depends(get_session)):
     return objs
 
 
-@router.get("/{dict_name}", response_model=list[DictRow])
+@router.get("/{dict_name}", response_model=list[DictRowPublic])
 def get_dict_values_by_dict_name(dict_name:str, db_session: Session = Depends(get_session)):
     objs = db_session.exec(select(DictRow).where(DictRow.dict_name == dict_name.upper())).all()
     if not objs:
