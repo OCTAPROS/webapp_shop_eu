@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from sqlmodel import Session, select
 
 from db.db_session import get_session
-from models.order import Order, OrderRow
+from models.order import Order, OrderRow, OrderInsert, OrderRowInsert
 from typing import List
 
 router = APIRouter()
@@ -25,8 +25,16 @@ router = APIRouter()
 #     return order
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_order(order: Order, db_session: Session = Depends(get_session)):
+def create_order(order: OrderInsert, 
+                 db_session: Session = Depends(get_session) #,
+                #  current_user: User = Depends(get_current_user)
+                 ):
     print("##############################")
+    print(order.__dict__)
+    print("##############################2")
+
+    for or1 in order.order_rows:
+        print(or1)
     # db_session.add(order)  
     # db_session.commit()
     # db_session.refresh(order)

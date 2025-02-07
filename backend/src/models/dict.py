@@ -18,5 +18,5 @@ class DictRowPublic(SQLModel):
 
     id: int | None = Field(Integer, primary_key=True)
     # dict_name: str = Field(String(20), nullable=False)
-    dict_key: str = Field(String(20), nullable=False)
+    # dict_key: str = Field(String(20), nullable=False)
     dict_value: str = Field(String(50), nullable=False)

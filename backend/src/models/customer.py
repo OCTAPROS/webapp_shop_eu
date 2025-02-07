@@ -25,13 +25,14 @@ class Customer(SQLModel, table=True):
     last_name: str = Field(String(150), nullable=False)
     email: str = Field(sa_column=Column(String(50), nullable=False))
     phone_number: str = Field(String(9), nullable=False)
-    city_id: int = Field(Integer, foreign_key="city_t.id", nullable=False)
+    # city_id: int = Field(Integer, foreign_key="city_t.id", nullable=False)
+    city: str = Field(String, nullable=False)
     postal_code: str = Field(String(150), nullable=False)
     street: str = Field(String(150), nullable=False) 
     nip: str = Field(String(150), nullable=False)
     company_name: str = Field(String(150), nullable=False)
 
-    city: "City" = Relationship(back_populates="customers")
+    # city: "City" = Relationship(back_populates="customers")
     # as_user: User = Relationship(back_populates="as_customer")
  
 
@@ -40,4 +41,4 @@ class City(SQLModel, table=True):
     id: int | None = Field(sa_column=Column(Integer, primary_key=True))
     city: str = Field(sa_column=Column(String(100), nullable=False))
 
-    customers: List[Customer] = Relationship(back_populates="city")
+    # customers: List[Customer] = Relationship(back_populates="city")
