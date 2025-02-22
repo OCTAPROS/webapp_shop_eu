@@ -1,3 +1,5 @@
+SET AUTOCOMMIT ON;
+
 MERGE INTO CUSTOMER_T cs
 USING CITY_T c
 ON (cs.city_id = c.id)
@@ -6,6 +8,8 @@ WHEN MATCHED THEN
 ;
 COMMIT
 ;
+
+
 
 CREATE TABLE "DICTS_T" 
 (	
@@ -29,6 +33,21 @@ SELECT
     'DELIVERY_METHOD' AS DICT_NAME, 
     UPPER(NAZWA) AS DICT_KEY,
     NAZWA AS DICT_VALUE
-    
 FROM FORMAODBIORU
+;
+
+DELETE FROM DICTS_T
+WHERE DICT_NAME = 'DELIVERY_METHOD';
+
+SELECT 
+    h.id,
+    r.product_id,
+    r.quantity,
+    p.price
+    r.quantity * p.price AS 
+    
+FROM ORDER_T h
+    JOIN ORDER_ROW_T r ON h.id = r.ORDER_ID 
+    JOIN PRODUCT_T p ON p.ID = r.PRODUCT_ID
+
 ;

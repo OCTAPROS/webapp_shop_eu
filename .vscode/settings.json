@@ -1,6 +1,7 @@
 {
     "python.envFile": "${workspaceFolder}/.env",
     "markdown-preview-enhanced.plantumlServer": "https://kroki.io/plantuml/svg/",
+    "plantuml.server": "https://kroki.io/plantuml/svg",
     "todo-tree.highlights.defaultHighlight": {
         "icon": "alert",
         "type": "text",
@@ -27,5 +28,5 @@
     ],
     "files.exclude": {
         "**/__pycache__": true
-    }
+    },
 }

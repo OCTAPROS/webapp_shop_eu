@@ -2,22 +2,23 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from sqlmodel import Session, select
 
 from db.db_session import get_session
-from models.product import Product  #, ProductPublic
+from models.product import Product, ProductView  #, ProductPublic
 from typing import List
 
 router = APIRouter()
 
 
-@router.get("/", response_model=List[Product])
+@router.get("/", response_model=list[ProductView])
 def get_all_products(skip: int = 0, limit = 10, db_session: Session = Depends(get_session)):
-    products = db_session.exec(select(Product).offset(skip).limit(limit)).all()
+    products = db_session.exec(select(ProductView).offset(skip).limit(limit)).all()
     if not products:
         raise HTTPException(detail=f"There are no products for selected criteria", status_code=status.HTTP_404_NOT_FOUND)
     return products
 
-@router.get("/{id}", response_model=Product)
+@router.get("/{id}", response_model=ProductView)
 def get_product_by_id(id:int, db_session: Session = Depends(get_session)):
-    product = db_session.get(Product, id)
+    # product = db_session.get(ProductView, id)
+    product = db_session.exec(select(ProductView).where(ProductView.id == id)).one_or_none()
     if not product:
         raise HTTPException(detail=f"Product with id {id} does not exist", status_code=status.HTTP_404_NOT_FOUND)
     return product
