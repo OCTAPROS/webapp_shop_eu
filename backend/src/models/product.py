@@ -15,17 +15,6 @@ class Product(SQLModel, table=True):
     ean: str | None = Field(max_length=13, nullable=False)
     description: str | None = Field(max_length=1000, nullable=False)
 
-# class Product(SQLModel, table=True):
-#     __tablename__ = "product_t"
-
-#     id: int | None = Field(Integer, primary_key=True, nullable=True)
-#     brand_id: str = Field(String(20), nullable=False)
-#     product_type_id: int =Field(String, nullable=False)
-#     price: float = Field(Numeric, nullable=False)
-#     name: str = Field(String(150))
-#     ean: str | None = Field(String(13), nullable=False)
-#     description: str | None = Field(String(1000), nullable=False)
-
 class ProductInsert(SQLModel):
     name: str
     brand_id: int 
