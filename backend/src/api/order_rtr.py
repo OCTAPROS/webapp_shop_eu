@@ -25,20 +25,20 @@ router = APIRouter()
 #     return order
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_order(order: OrderInsert, 
+def create_order(order_data: OrderInsert, 
                  db_session: Session = Depends(get_session) #,
                 #  current_user: User = Depends(get_current_user)
                  ):
     print("##############################")
-    print(order.__dict__)
+    print(order_data.__dict__)
     print("##############################2")
 
-    for or1 in order.order_rows:
-        print(or1)
-    # db_session.add(order)  
-    # db_session.commit()
-    # db_session.refresh(order)
-    return order
+    # for or1 in order.order_rows:
+    #     print(or1)
+    # # db_session.add(order)  
+    # # db_session.commit()
+    # # db_session.refresh(order)
+    return order_data
 
 # @router.put("/{id}", response_model=Order, status_code=status.HTTP_200_OK)
 # def update_order(id:int, product_data: Order, db_session: Session = Depends(get_session)):
