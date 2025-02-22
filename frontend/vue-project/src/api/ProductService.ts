@@ -25,23 +25,22 @@ export class ProductService {
     }
   }
 
-  async editProduct(product: Product): Promise<void> {
+  async editProduct(product: Product): Promise<Product> {
     try {
       console.log('ProductService product: ', product)
       const response = await this.httpClient.put<Product>(`/products/${product.id}`, product);
-      console.log('response', response.data)
-
+      return response.data
     } catch (error) {
       console.error('Error fetching products:', error);
       throw new Error('Unable to fetch products');
     }
   }
 
-  async addProduct(product: Product): Promise<void> {
+  async addProduct(product: Product): Promise<Product> {
     try {
       console.log('ProductService product: ', product)
       const response = await this.httpClient.post<Product>(`/products/`, product);
-      console.log('response', response.data)
+      return response.data
 
     } catch (error) {
       console.error('Error fetching products:', error);

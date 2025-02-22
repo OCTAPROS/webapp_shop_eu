@@ -45,6 +45,7 @@ export const useProductStore = defineStore('product', {
       try {
         console.log('updatedProduct', updatedProduct)
         const newProduct = await productService.editProduct(updatedProduct)
+        console.log('newProduct', newProduct)
         const index = this.products.findIndex((p: Product) => p.id === newProduct.id);
         if (index !== -1) {
           this.products[index] = newProduct;
@@ -58,10 +59,7 @@ export const useProductStore = defineStore('product', {
       try {
         console.log('adddProduct', updatedProduct)
         const newProduct = await productService.addProduct(updatedProduct)
-        const index = this.products.findIndex((p: Product) => p.id === newProduct.id);
-        if (index !== -1) {
-          this.products[index] = newProduct;
-        }
+        this.products.push(newProduct)
       } catch (err) {
         this.error = 'Nie udało się zmienić produktu.';
         console.error(err);
