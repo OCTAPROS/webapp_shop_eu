@@ -44,6 +44,7 @@ export const useProductStore = defineStore('product', {
     },
     async updateProduct(updatedProduct: Product) {
       try {
+        console.log('updatedProduct', updatedProduct)
         const newProduct = await productService.editProduct(updatedProduct)
         const index = this.products.findIndex((p: Product) => p.id === newProduct.id);
         if (index !== -1) {

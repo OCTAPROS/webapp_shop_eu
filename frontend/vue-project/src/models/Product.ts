@@ -1,36 +1,32 @@
 export class Product {
-  marka: string;
-  type?: number;
-  typ?: number;
+  brand_id: number;
+  type_id: number;
   price: number;
   name: string;
   ean: string;
-  stock_count: number;
+  qty_on_stock?: number;
   id?: number;
-  longDescription: string;
-  image?: string;
+  description: string;
 
   constructor(item:Product) {
-    this.marka = item.marka;
-    this.type = item?.type || item?.typ;
+    this.brand_id = item.brand_id;
+    this.type_id = item?.type_id;
     this.price =item.price;
     this.name = item.name;
     this.ean = item.ean;
-    this.stock_count = item.stock_count;
+    this.qty_on_stock = item?.qty_on_stock;
     this.id = item.id;
-    this.longDescription = item.longDescription;
-    this.image = undefined
+    this.description = item.description;
   }
 }
 
 export const defaultProduct = new Product({
-  marka: '',
-  type: 1,
+  brand_id: 1,
+  type_id: 1,
   price: 1,
   name: '',
   ean: '',
-  stock_count: 1,
+  qty_on_stock: 2,
   id: undefined,
-  longDescription: '',
-  image: ''
+  description: ''
 })

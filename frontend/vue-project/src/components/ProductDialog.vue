@@ -4,13 +4,31 @@
       <v-card-title>{{ editedProduct.id ? "Edytuj produkt" : "Dodaj produkt" }}</v-card-title>
       <v-card-text>
         <v-text-field label="Nazwa" v-model="editedProduct.name"></v-text-field>
-        <v-text-field label="marka" v-model="editedProduct.marka"></v-text-field>
-        <v-text-field label="typ"  v-model="editedProduct.type"></v-text-field>
+        <v-select
+          label="Marka"
+          v-model="editedProduct.brand_id"
+          :items="brands"
+          item-title="dict_value"
+          item-value="id"
+        ></v-select>
+
+        <!-- Lista rozwijalna dla typu -->
+        <v-select
+          label="Typ"
+          v-model="editedProduct.type"
+          :items="types"
+          item-title="dict_value"
+          item-value="id"
+        ></v-select>
         <v-text-field label="Cena" type="number" v-model="editedProduct.price"></v-text-field>
         <v-text-field label="ean" type="number" v-model="editedProduct.ean"></v-text-field>
-        <v-text-field label="Stan na magazynie" type="number" v-model="editedProduct.stock_count"></v-text-field>
-        <v-text-field label="Opis" v-model="editedProduct.longDescription"></v-text-field>
-        <v-text-field label="URL obrazu" v-model="editedProduct.image"></v-text-field>
+        <v-text-field label="Stan na magazynie" type="number" v-model="editedProduct.stock_count" min="0" step="1"></v-text-field>
+        <v-textarea
+          label="Opis"
+          v-model="editedProduct.longDescription"
+          rows="3"
+          auto-grow
+        ></v-textarea>
       </v-card-text>
       <v-card-actions>
         <v-btn color="grey" @click="dialog = false">Anuluj</v-btn>
@@ -21,10 +39,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { Product, defaultProduct } from '@/models/Product';
+import { Dict } from '@/models/Dict';
+import { DictService } from '@/api/DictService';
+import { useDictStore } from '@/stores/dictStore';
 
 const emit = defineEmits(['save', 'open'])
+
+
+const dictService = new DictService();
+const dictStore = useDictStore();
+
+
 
 const dialog = ref(false);
 const editedProduct = ref(new Product(defaultProduct));
@@ -39,6 +66,14 @@ const save = () => {
   emit('save', editedProduct.value);
   dialog.value = false;
 };
+
+const types = computed(() => dictStore.PRODUCT_TYPE)
+const brands = computed(() => dictStore.BRAND)
+
+onMounted(() => {
+  dictStore.fetchBRAND()
+  dictStore.fetchPRODUCT_TYPE()
+})
 
 
 defineExpose({ open });

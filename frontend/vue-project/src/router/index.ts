@@ -72,19 +72,19 @@ const router = createRouter({
 
 
 // Navigation Guard for protected routes
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      // Opcjonalnie: można dodać weryfikację tokena, np. sprawdzając datę wygaśnięcia
-      next();
-    } else {
-      alert('Zaloguj się aby otworzyć tą stronę ');
-      next({ name: 'Login' });
-    }
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.requiresAuth) {
+//     const token = localStorage.getItem('jwt');
+//     if (token) {
+//       // Opcjonalnie: można dodać weryfikację tokena, np. sprawdzając datę wygaśnięcia
+//       next();
+//     } else {
+//       alert('Zaloguj się aby otworzyć tą stronę ');
+//       next({ name: 'Login' });
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
 export default router
