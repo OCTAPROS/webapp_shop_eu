@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from sqlmodel import Session, select
 
 from db.db_session import get_session
-from models.product import Product, ProductView  #, ProductPublic
+from models.product import ProductInsert, ProductUpdate, ProductView, Product
 from typing import List
 
 router = APIRouter()
@@ -23,14 +23,14 @@ def get_product_by_id(id:int, db_session: Session = Depends(get_session)):
         raise HTTPException(detail=f"Product with id {id} does not exist", status_code=status.HTTP_404_NOT_FOUND)
     return product
 
-@router.post("/", response_model=Product, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=ProductInsert, status_code=status.HTTP_201_CREATED)
 def create_product(product: Product, db_session: Session = Depends(get_session)):
     db_session.add(product)  
     db_session.commit()
     db_session.refresh(product)
     return product
 
-@router.put("/{id}", response_model=Product, status_code=status.HTTP_200_OK)
+@router.put("/{id}", response_model=ProductUpdate, status_code=status.HTTP_200_OK)
 def update_product(id:int, product_data: Product, db_session: Session = Depends(get_session)):
     product = db_session.get(Product, id)
     if not product:
