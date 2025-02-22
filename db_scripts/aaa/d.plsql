@@ -175,7 +175,6 @@ SET FIRST_NAME = fname_,
 	PHONE_NUMBER=phonenumber_
 WHERE id = customerid_;
 END;
-<<<<<<< HEAD
 /
 
 
@@ -246,6 +245,3 @@ WITH
         return concat(wynik, ' zl');
 
 end;
-=======
-/
->>>>>>> ca36b6318d9b60cdb22ea069422a1bc5df8c34d9
