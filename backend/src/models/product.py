@@ -16,7 +16,7 @@ class Product(SQLModel, table=True):
     ean: str | None = Field(String(13), nullable=False)
     description: str | None = Field(String(1000), nullable=False)
 
-class ProducInsert(SQLModel):
+class ProductInsert(SQLModel):
     id: int | None
     name: str
     brand_id: int 
@@ -26,7 +26,7 @@ class ProducInsert(SQLModel):
     qty_on_stock: int
     description: str
 
-class ProducUpdate(ProducInsert):
+class ProductUpdate(ProductInsert):
     pass
     
 class ProductView(SQLModel, table=True):
@@ -40,3 +40,4 @@ class ProductView(SQLModel, table=True):
     ean: str 
     product_type_id: int
     product_type: str
+    qty_on_stock: int
