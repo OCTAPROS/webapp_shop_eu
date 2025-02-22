@@ -6,11 +6,8 @@ import { BASE_URL } from '@/main';
 export class DictService {
   private httpClient: AxiosInstance;
 
-  constructor() {
-    this.httpClient = axios.create({
-      baseURL: `${BASE_URL}`,
-      timeout: 5000,
-    });
+ constructor() {
+    this.httpClient = axios 
   }
 
   async getBrand(): Promise<Dict[]> {

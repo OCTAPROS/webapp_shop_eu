@@ -6,11 +6,8 @@ import { BASE_URL } from '@/main';
 export class ProductService {
   private httpClient: AxiosInstance;
 
-  constructor() {
-    this.httpClient = axios.create({
-      baseURL: `${BASE_URL}`,
-      timeout: 5000,
-    });
+ constructor() {
+    this.httpClient = axios 
   }
 
   async getProducts(skip:number, limit:number): Promise<Product[]> {
