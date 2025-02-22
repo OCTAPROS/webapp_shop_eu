@@ -21,12 +21,12 @@ export class Product {
 }
 
 export const defaultProduct = new Product({
-  brand_id: 1,
-  product_type_id: 1,
-  price: 1,
+  brand_id: 0,
+  product_type_id: 0,
+  price: 0,
   name: '',
   ean: '',
-  qty_on_stock: 2,
+  qty_on_stock: 50,
   id: undefined,
   description: ''
 })

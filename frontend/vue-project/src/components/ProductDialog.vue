@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>{{ editedProduct.id ? "Edytuj produkt" : "Dodaj produkt" }}</v-card-title>
       <v-card-text>
-        <v-text-field label="Nazwa" v-model="editedProduct.name"></v-text-field>
+        <v-text-field label="Nazwa" :maxlength="50" v-model="editedProduct.name"></v-text-field>
         <v-select
           label="Marka"
           v-model="editedProduct.brand_id"
@@ -21,13 +21,14 @@
           item-value="id"
         ></v-select>
         <v-text-field label="Cena" type="number" v-model.number="editedProduct.price"></v-text-field>
-        <v-text-field label="ean" type="number" v-model="editedProduct.ean"></v-text-field>
+        <v-text-field label="ean" type="sting" :maxlength="13" v-model="editedProduct.ean"></v-text-field>
         <v-text-field label="Stan na magazynie" type="number" v-model="editedProduct.qty_on_stock" min="0" step="1"></v-text-field>
         <v-textarea
           label="Opis"
           v-model="editedProduct.description"
           rows="3"
           auto-grow
+           :maxlength="100"
         ></v-textarea>
       </v-card-text>
       <v-card-actions>

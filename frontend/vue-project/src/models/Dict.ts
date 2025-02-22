@@ -9,6 +9,6 @@ export class Dict {
 }
 
 export const defaultDict = new Dict({
-  id: undefined,
-  dict_value: '',
+  id: 0,
+  dict_value: 'Wybierz',
 })

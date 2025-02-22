@@ -1,6 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia'
-import { Dict } from '@/models/Dict'
+import { Dict, defaultDict } from '@/models/Dict'
 import { DictService } from '@/api/DictService';
 
 
@@ -25,7 +25,8 @@ export const useDictStore = defineStore('Dict', {
       this.error = null;
       try {
         const BRAND = await dictService.getBrand();
-        this.BRAND = BRAND;
+        this.BRAND.push(defaultDict)
+        BRAND.map((item: Dict) => this.BRAND.push(item))
       } catch (err) {
         this.error = 'Nie udało się pobrać firm.';
         console.error(err);
@@ -40,7 +41,8 @@ export const useDictStore = defineStore('Dict', {
 
       try {
         const DELIVERY_METHOD = await dictService.getDELIVERY_METHOD();
-        this.DELIVERY_METHOD = DELIVERY_METHOD;
+        this.DELIVERY_METHOD.push(defaultDict)
+        DELIVERY_METHOD.map((item: Dict) => this.DELIVERY_METHOD.push(item))
       } catch (err) {
         this.error = 'Nie udało się pobrać firm.';
         console.error(err);
@@ -70,7 +72,8 @@ export const useDictStore = defineStore('Dict', {
 
       try {
         const PRODUCT_TYPE = await dictService.getPRODUCT_TYPE();
-        this.PRODUCT_TYPE = PRODUCT_TYPE;
+        this.PRODUCT_TYPE.push(defaultDict)
+        PRODUCT_TYPE.map((item: Dict)=> this.PRODUCT_TYPE.push(item))
       } catch (err) {
         this.error = 'Nie udało się pobrać firm.';
         console.error(err);
