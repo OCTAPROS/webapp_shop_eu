@@ -1,6 +1,7 @@
 export class Product {
   brand_id: number;
-  type_id: number;
+  product_type_id: number;
+  product_type?: string;
   price: number;
   name: string;
   ean: string;
@@ -10,7 +11,8 @@ export class Product {
 
   constructor(item:Product) {
     this.brand_id = item.brand_id;
-    this.type_id = item?.type_id;
+    this.product_type_id = item?.product_type_id;
+    this.product_type = item?.product_type
     this.price =item.price;
     this.name = item.name;
     this.ean = item.ean;
@@ -22,7 +24,8 @@ export class Product {
 
 export const defaultProduct = new Product({
   brand_id: 1,
-  type_id: 1,
+  product_type_id: 1,
+  product_type: '',
   price: 1,
   name: '',
   ean: '',

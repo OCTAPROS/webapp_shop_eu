@@ -19,7 +19,7 @@
         <tr v-for="product in products" :key="product.id">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
-          <td>{{ product.stock_count }}</td>
+          <td>{{ product.qty_on_stock }}</td>
           <td>{{ product.ean }}</td>
           <td>{{ product.price }} zł</td>
           <td>

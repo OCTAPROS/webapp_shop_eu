@@ -15,12 +15,12 @@
         <!-- Lista rozwijalna dla typu -->
         <v-select
           label="Typ"
-          v-model="editedProduct.type_id"
+          v-model="editedProduct.product_type_id"
           :items="types"
           item-title="dict_value"
           item-value="id"
         ></v-select>
-        <v-text-field label="Cena" type="number" v-model="editedProduct.price"></v-text-field>
+        <v-text-field label="Cena" type="number" v-model.number="editedProduct.price"></v-text-field>
         <v-text-field label="ean" type="number" v-model="editedProduct.ean"></v-text-field>
         <v-text-field label="Stan na magazynie" type="number" v-model="editedProduct.qty_on_stock" min="0" step="1"></v-text-field>
         <v-textarea
