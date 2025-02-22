@@ -30,17 +30,30 @@ def create_product(product: Product, db_session: Session = Depends(get_session))
     db_session.refresh(product)
     return product
 
-@router.put("/{id}", response_model=ProductUpdate, status_code=status.HTTP_200_OK)
-def update_product(id:int, product_data: Product, db_session: Session = Depends(get_session)):
-    product = db_session.get(Product, id)
+@router.put("/{id}", response_model=ProductView, status_code=status.HTTP_200_OK)
+def update_product(id:int, product_data: ProductUpdate, db_session: Session = Depends(get_session)):
+    product: Product = db_session.get(Product, id)
     if not product:
         raise HTTPException(detail=f"Product with id {id} does not exist", status_code=status.HTTP_404_NOT_FOUND)
-    
-    for field, value in product_data.model_dump().items():
-        setattr(product, field, value)
+    print(f"###product_data", product_data)
+    product.name = product_data.name
+    product.description = product_data.description
+    product.brand_id = product_data.brand_id
+    product.product_type_id = product_data.product_type_id
+    product.ean = product_data.ean
+    product.price = product_data.price
+    # for field, value in product_data.model_dump().items():
+        
+    #     try:
+    #         setattr(product, field, value)
+    #     except Exception:
+    #         pass
     db_session.commit()
-    db_session.refresh(product)
-    return product
+
+    productM: ProductView = db_session.exec(select(ProductView).where(ProductView.id == id)).one_or_none()
+    if not product:
+        raise HTTPException(detail=f"Product with id {id} does not exist", status_code=status.HTTP_404_NOT_FOUND)
+    return productM
 
 @router.delete("/{id}", status_code=status.HTTP_200_OK)
 def delete_product(id:int, db_session: Session = Depends(get_session)):

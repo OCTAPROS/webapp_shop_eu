@@ -262,16 +262,14 @@ CREATE OR REPLACE VIEW "WEBSTORE"."PRODUCTS_V" AS
     p.EAN,
     p.PRODUCT_TYPE_ID,
     dpt1.DICT_VALUE AS PRODUCT_TYPE,
-    w.QUANTITY_ON_STOCK AS QTY_ON_STOCK
+    w.QUANTITY_ON_STOCK AS QTY_ON_STOCK,
+    p.DESCRIPTION
     FROM PRODUCT_T p
     LEFT JOIN DICTS_T db1 ON p.BRAND_ID = db1.ID
     LEFT JOIN DICTS_T dpt1 ON p.PRODUCT_TYPE_ID = dpt1.ID
     LEFT JOIN WAREHOUSE_T w ON p.ID = w.PRODUCT_ID;
 
 
-SELECT products_v.id, products_v.brand_id, products_v.brand, products_v.price, products_v.name, products_v.ean, products_v.product_type_id, products_v.product_type, products_v.qty_on_stock
-FROM products_v
+SELECT * FROM products_v
 OFFSET 0 ROWS
 FETCH FIRST 10 ROWS ONLY;
-
-DROP VIEW "WEBSTORE"."PRODUCTS_V";
