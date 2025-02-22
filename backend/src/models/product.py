@@ -41,3 +41,4 @@ class ProductView(SQLModel, table=True):
     product_type_id: int
     product_type: str
     qty_on_stock: int | None
+    description: str | None
