@@ -88,10 +88,8 @@ const openDialog = (product?: Product) => {
 
 const saveProduct = (product: Product) => {
   if (product.id) {
-    console.log('update', product)
     productStore.updateProduct(product);
   } else {
-    console.log('add', product)
     productStore.addProduct(product);
   }
 };

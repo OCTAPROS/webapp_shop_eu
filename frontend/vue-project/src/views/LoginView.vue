@@ -25,36 +25,34 @@ boczek@gmail.com
   </v-container>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref } from 'vue'
 import axios from '@/plugins/axios';
+import { useRouter } from 'vue-router'
+import { useCustomerStore } from '../stores/customerStore';
+
+const customerStore = useCustomerStore()
+
+const router = useRouter()
+
+const email = ref('')
+const password = ref('')
 
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  methods: {
-    async login() {
-      try {
-        const response = await axios.post('http://localhost:8001/auth/token', {
-          username: this.email,
-          password: this.password,
-        });
-        const token = response.data.access_token;
-        localStorage.setItem('jwt', token);
-        this.$router.push('/')
-        console.log('Login successful!');
-      } catch (error) {
-        console.error(error);
-        console.log('Login failed. Please try again.');
-      }
-    },
-  },
-};
-
+const login = async () => {
+ try {
+    const response = await axios.post('http://localhost:8001/auth/token', {
+      username: email.value,
+      password: password.value,
+    });
+    const token = response.data.access_token;
+    localStorage.setItem('jwt', token);
+    customerStore.fetchUser()
+    router.push('/')
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 </script>
 

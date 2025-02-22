@@ -38,7 +38,7 @@
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { LineChart, PieChart, BarChart } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';

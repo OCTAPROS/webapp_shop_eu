@@ -14,8 +14,8 @@ export const useCustomerStore = defineStore('customer', {
     customers: [] as Customer[],
     isLoading: false,
     error: null as string | null,
-    u: defaultUser,
-    orderResponse: {}
+    u: JSON.parse(localStorage.getItem('user') || '[]'),
+    orderResponse: {} as OrderReturn
   }),
 
   actions: {
@@ -37,10 +37,10 @@ export const useCustomerStore = defineStore('customer', {
     async fetchUser() {
       try {
         const a = await customerService.me();
-        console.log(a)
         this.u = a
+        localStorage.setItem('user', JSON.stringify(this.u));
       } catch (err) {
-        this.error = 'Nie udało się pobrać produktów.';
+        this.error = 'Nie udało się pobrać.';
         console.error(err);
       } finally {
         this.isLoading = false;
@@ -50,10 +50,9 @@ export const useCustomerStore = defineStore('customer', {
     async order(data: Order) {
       try {
         const response = await customerService.order(data);
-        console.log(response)
         this.orderResponse = response
       } catch (err) {
-        this.error = 'Nie udało się pobrać produktów.';
+        this.error = 'Nie udało się pobrać.';
         console.error(err);
       } finally {
         this.isLoading = false;

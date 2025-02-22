@@ -22,7 +22,7 @@
         ></v-select>
         <v-text-field label="Cena" type="number" v-model.number="editedProduct.price"></v-text-field>
         <v-text-field label="ean" type="sting" :maxlength="13" v-model="editedProduct.ean"></v-text-field>
-        <v-text-field label="Stan na magazynie" type="number" v-model="editedProduct.qty_on_stock" min="0" step="1"></v-text-field>
+        <v-text-field label="Stan na magazynie" type="number" v-model.number="editedProduct.qty_on_stock" min="0" step="1"></v-text-field>
         <v-textarea
           label="Opis"
           v-model="editedProduct.description"
@@ -60,7 +60,6 @@ const editedProduct = ref(new Product(defaultProduct));
 const open = (product: Product) => {
   editedProduct.value = product ? { ...product } : new Product(defaultProduct);
   dialog.value = true;
-  console.log('editedProduct.value', editedProduct.value)
 };
 
 const save = () => {

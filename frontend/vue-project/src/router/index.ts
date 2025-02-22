@@ -27,7 +27,12 @@ const router = createRouter({
     {
       path: '/checkout',
       name: 'Podsumowanie',
-      component: () => import('../views/CheckoutView.vue'),
+      component: () => import('@/views/CheckoutView.vue'),
+    },
+    {
+      path: '/orderSummary',
+      name: 'StatusZamówienia',
+      component: () => import('@/views/orderSummaryView.vue'),
     },
     {
       path: '/account',

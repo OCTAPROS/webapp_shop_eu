@@ -1,13 +1,12 @@
-import axios from '@/plugins/axios';
+import instance from '@/plugins/axios';
 import type { AxiosInstance } from 'axios';
 import { Product } from '@/models/Product';
-import { BASE_URL } from '@/main';
 
 export class ProductService {
   private httpClient: AxiosInstance;
 
  constructor() {
-    this.httpClient = axios 
+    this.httpClient = instance 
   }
 
   async getProducts(skip:number, limit:number): Promise<Product[]> {
@@ -24,7 +23,6 @@ export class ProductService {
 
   async editProduct(product: Product): Promise<Product> {
     try {
-      console.log('ProductService product: ', product)
       const response = await this.httpClient.put<Product>(`/products/${product.id}`, product);
       return response.data
     } catch (error) {
@@ -35,7 +33,6 @@ export class ProductService {
 
   async addProduct(product: Product): Promise<Product> {
     try {
-      console.log('ProductService product: ', product)
       const response = await this.httpClient.post<Product>(`/products/`, product);
       return response.data
 
@@ -48,7 +45,6 @@ export class ProductService {
   async deleteProduct(id: number): Promise<void> {
     try {
       const response = await this.httpClient.delete<Product>(`/products/${id}`);
-      console.log('response', response.data)
 
     } catch (error) {
       console.error('Error fetching products:', error);

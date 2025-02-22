@@ -31,6 +31,7 @@ export class Order {
 }
 
 export const defaultOrder = new Order({
+  customer_id: 0,
   payment_method_id: 0,
   delivery_method_id: 0,
   order_rows: [

@@ -1,13 +1,13 @@
-import axios from '@/plugins/axios';
+import instance from '@/plugins/axios';
 import type { AxiosInstance } from 'axios';
 import { Dict } from '@/models/Dict';
-import { BASE_URL } from '@/main';
+
 
 export class DictService {
   private httpClient: AxiosInstance;
 
  constructor() {
-    this.httpClient = axios 
+    this.httpClient = instance 
   }
 
   async getBrand(): Promise<Dict[]> {

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TopBarComponent :quantity="quant" />
+    <TopBarComponent :quantity="quant" :isLogged="isLoged" :userEmail="userEmail" />
     <v-main>
      
 
@@ -12,15 +12,20 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-import TopBarComponent from './components/TopBarComponent.vue';
+import TopBarComponent from '@/components/TopBarComponent.vue';
 // import FotterComponent from './components/FotterComponent.vue';
 import { useCartStore } from '@/stores/cart';
+import { useCustomerStore } from '@/stores/customerStore'
 
+const customerStore = useCustomerStore();
 const cartStore = useCartStore();
 
 const quant = computed(()=>cartStore.totalItems)
+
+const isLoged = computed(() => !!customerStore.user.email)
+const userEmail = computed(() => customerStore?.user?.email)
 
 </script>
 

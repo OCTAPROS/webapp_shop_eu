@@ -1,4 +1,4 @@
-import axios from '@/plugins/axios';
+import instance from '@/plugins/axios';
 import type { AxiosInstance } from 'axios';
 import { Customer } from '@/models/Customer';
 import { User } from '@/models/user';
@@ -8,7 +8,7 @@ export class CustomerService {
   private httpClient: AxiosInstance;
 
   constructor() {
-    this.httpClient = axios 
+    this.httpClient = instance 
   }
 
   async getCustomers(): Promise<Customer[]> {
@@ -26,7 +26,6 @@ export class CustomerService {
   async me(): Promise<User> {
     try {
       const response = await this.httpClient.get<User>('/auth/me'); //TODO paginacja
-      console.log('me', response.data)
       return new User (response.data)
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -36,9 +35,7 @@ export class CustomerService {
 
   async order(data: Order): Promise<OrderReturn> {
     try {
-      console.log('order send', data)
       const response = await this.httpClient.post<OrderReturn>('/orders', data); //TODO paginacja
-      console.log('order response', response.data)
       return new OrderReturn(response.data)
 
     } catch (error) {

@@ -41,8 +41,7 @@ export const useDictStore = defineStore('Dict', {
 
       try {
         const DELIVERY_METHOD = await dictService.getDELIVERY_METHOD();
-        this.DELIVERY_METHOD.push(defaultDict)
-        DELIVERY_METHOD.map((item: Dict) => this.DELIVERY_METHOD.push(item))
+        this.DELIVERY_METHOD = DELIVERY_METHOD
       } catch (err) {
         this.error = 'Nie udało się pobrać firm.';
         console.error(err);
