@@ -103,6 +103,7 @@ const deliveryMethods = computed(() => dictStore.availableDELIVERY_METHOD)
 
 const order = () => {
   const ord = new Order({
+    customer_id: user.value.customer_id,
     payment_method_id: selectedPayment.value,
     delivery_method_id: selectedDelivery.value,
     order_rows: orderRows.value,

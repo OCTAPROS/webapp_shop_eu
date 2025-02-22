@@ -16,12 +16,14 @@ export class OrderReturn {
 }
 
 export class Order {
+  customer_id: number;
   payment_method_id: number;
   delivery_method_id: number;
   order_rows: OrderRow[]
 
 
   constructor(item: Order) {
+    this.customer_id = item.customer_id
     this.payment_method_id = item?.payment_method_id;
     this.delivery_method_id =item.delivery_method_id;
     this.order_rows = item.order_rows;

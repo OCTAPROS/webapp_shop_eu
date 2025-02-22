@@ -13,7 +13,7 @@ export const useCartStore = defineStore('cart', {
     totalItems: (state) => state.cart.reduce((acc: number, item: ProductInCart) => acc + item.quantity, 0),
     totalPrice: (state) =>
       state.cart.reduce((acc: number, item: ProductInCart) => acc + item.quantity * item.price, 0),
-    orderRows: (state) => state.cart.map((item: ProductInCart) => ({ 'quantity': item.quantity, 'id': item.id }))
+    orderRows: (state) => state.cart.map((item: ProductInCart) => ({ 'quantity': item.quantity, 'product_id': item.id }))
   },
   actions: {
     addToCart(product: Product, quantity: number) {
