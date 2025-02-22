@@ -13,9 +13,9 @@ export class ProductService {
     });
   }
 
-  async getProducts(): Promise<Product[]> {
+  async getProducts(skip:number, limit:number): Promise<Product[]> {
     try {
-      const response = await this.httpClient.get<Product[]>('/products/?skip=0&limit=10'); //TODO paginacja
+      const response = await this.httpClient.get<Product[]>(`/products/?skip=${skip}&limit=${limit}`); //TODO paginacja
       return response.data.map((product: Product) =>
           new Product(product)
       );
@@ -25,12 +25,24 @@ export class ProductService {
     }
   }
 
-  async editProduct(product: Product): Promise<Product> {
+  async editProduct(product: Product): Promise<void> {
     try {
       console.log('ProductService product: ', product)
       const response = await this.httpClient.put<Product>(`/products/${product.id}`, product);
       console.log('response', response.data)
-      return response.data
+
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw new Error('Unable to fetch products');
+    }
+  }
+
+  async addProduct(product: Product): Promise<void> {
+    try {
+      console.log('ProductService product: ', product)
+      const response = await this.httpClient.post<Product>(`/products/`, product);
+      console.log('response', response.data)
+
     } catch (error) {
       console.error('Error fetching products:', error);
       throw new Error('Unable to fetch products');

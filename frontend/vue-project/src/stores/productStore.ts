@@ -12,6 +12,8 @@ export const useProductStore = defineStore('product', {
     products: [] as Product[],
     isLoading: false,
     error: null as string | null,
+    skip:0,
+    limit: 500
   }),
 
   actions: {
@@ -20,7 +22,7 @@ export const useProductStore = defineStore('product', {
       this.error = null;
 
       try {
-        const products = await productService.getProducts();
+        const products = await productService.getProducts(this.skip, this.limit);
         this.products = products;
       } catch (err) {
         this.error = 'Nie udało się pobrać produktów.';
@@ -30,9 +32,6 @@ export const useProductStore = defineStore('product', {
       }
     },
 
-     addProduct(product: Product) {
-      this.products.push({ ...product, id: Date.now() });
-    },
     async deleteProduct(productId: number) {
       try{
         await productService.deleteProduct(productId)
@@ -46,6 +45,19 @@ export const useProductStore = defineStore('product', {
       try {
         console.log('updatedProduct', updatedProduct)
         const newProduct = await productService.editProduct(updatedProduct)
+        const index = this.products.findIndex((p: Product) => p.id === newProduct.id);
+        if (index !== -1) {
+          this.products[index] = newProduct;
+        }
+      } catch (err) {
+        this.error = 'Nie udało się zmienić produktu.';
+        console.error(err);
+      } 
+    },
+    async addProduct(updatedProduct: Product) {
+      try {
+        console.log('adddProduct', updatedProduct)
+        const newProduct = await productService.addProduct(updatedProduct)
         const index = this.products.findIndex((p: Product) => p.id === newProduct.id);
         if (index !== -1) {
           this.products[index] = newProduct;

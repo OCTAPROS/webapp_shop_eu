@@ -4,7 +4,31 @@
 
     <v-btn color="primary" class="mb-4" @click="openDialog(defaultProduct)">Dodaj produkt</v-btn>
 
-    <v-table>
+    <v-data-table
+      :headers="headers"
+      :items="products"
+      item-key="name"
+      items-per-page="25"
+      :sort-by="[{ key: 'id', order: 'desc' }]"
+      >
+      <template v-slot:item.actions="{ item }">
+        <v-btn icon color="blue" @click="openDialog(item)">
+          <v-icon>mdi-pencil</v-icon>
+        </v-btn>
+        <v-btn v-if="item.id" icon color="red" @click="deleteProduct(item.id)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </template>
+      <template v-slot:no-data>
+        <v-btn
+          color="primary"
+          @click="productStore.fetchProducts()"
+        >
+        Reset
+      </v-btn>
+    </template>
+    </v-data-table>
+    <!-- <v-table>
       <thead>
         <tr>
           <th>Id</th>
@@ -32,7 +56,7 @@
           </td>
         </tr>
       </tbody>
-    </v-table>
+    </v-table> -->
 
     <ProductDialog ref="productDialog" @save="saveProduct" />
   </v-container>
@@ -44,6 +68,14 @@ import { ref } from 'vue';
 import ProductDialog from '@/components/ProductDialog.vue';
 import { Product, defaultProduct } from '@/models/Product';
 
+const headers = [
+        { title: 'Id', value: 'id' },
+        { title: 'Nazwa', value: 'name' },
+        { title: 'Ilość na stanie', value: 'qty_on_stock' },
+        { title: 'Ean', value: 'ean' },
+        { title: 'Cena', value: 'price' },
+        { title: 'Akcje', value: 'actions' }
+      ]
 
 const productStore = useProductStore();
 const productDialog = ref(null);
@@ -60,7 +92,7 @@ const saveProduct = (product: Product) => {
     productStore.updateProduct(product);
   } else {
     console.log('add', product)
-    // productStore.addProduct(product);
+    productStore.addProduct(product);
   }
 };
 
