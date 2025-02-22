@@ -17,7 +17,6 @@ class Product(SQLModel, table=True):
     description: str | None = Field(String(1000), nullable=False)
 
 class ProductInsert(SQLModel):
-    id: int | None
     name: str
     brand_id: int 
     product_type_id: int    
