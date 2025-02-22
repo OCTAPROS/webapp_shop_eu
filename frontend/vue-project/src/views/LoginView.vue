@@ -20,11 +20,14 @@
         <router-link to="/register" class="mt-2">Rejestracja</router-link>
       </div>
     </v-form>
+boczek@gmail.com
+ Pass123!
   </v-container>
 </template>
 
 <script>
 import axios from '@/plugins/axios';
+
 
 export default {
   data() {
@@ -39,14 +42,10 @@ export default {
         const response = await axios.post('http://localhost:8001/auth/token', {
           username: this.email,
           password: this.password,
-          grant_type: "",
-          password:  "",
-          scope: "",
-          client_id: "",
-          client_secret: "",
         });
         const token = response.data.access_token;
         localStorage.setItem('jwt', token);
+        this.$router.push('/')
         console.log('Login successful!');
       } catch (error) {
         console.error(error);
@@ -56,8 +55,7 @@ export default {
   },
 };
 
-// boczek@gmail.com
-// Pass123!
+
 </script>
 
 <style>

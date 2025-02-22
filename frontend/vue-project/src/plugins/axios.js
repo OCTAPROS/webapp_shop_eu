@@ -1,6 +1,10 @@
 import axios from 'axios';
+import { BASE_URL } from '@/main';
 
-const instance = axios.create();
+const instance =  axios.create({
+    baseURL: `${BASE_URL}`,
+    timeout: 5000,
+  });
 
 instance.interceptors.request.use(
   (config) => {

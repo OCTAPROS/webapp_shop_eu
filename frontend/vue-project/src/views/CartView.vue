@@ -46,9 +46,11 @@
             <p>Produkty: {{ totalItems }}</p>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" block>
-              Przejdź do płatności
-            </v-btn>
+            <router-link :to="`/checkout`" class="product-link">
+              <v-btn  color="primary" block>
+                Przejdź dalej
+              </v-btn>
+            </router-link>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -59,8 +61,15 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useCartStore } from '../stores/cart';
+import { CustomerService } from '@/api/CustomerService';
+import { useCustomerStore } from '../stores/customerStore';
+
+
+
+const customerService = new CustomerService();
 
 const cartStore = useCartStore();
+const customerStore = useCustomerStore()
 
 const cart = computed(() => cartStore.cart); 
 const totalPrice = computed(() => cartStore.totalPrice);
@@ -73,5 +82,7 @@ const removeFromCart = (id: number) => {
 const updateQuantity = (id: number, quantity: number) => {
   cartStore.updateQuantity(id, quantity);
 };
+
+
 
 </script>
