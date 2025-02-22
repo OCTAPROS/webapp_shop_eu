@@ -245,3 +245,33 @@ WITH
         return concat(wynik, ' zl');
 
 end;
+
+
+UPDATE PRODUCT_T
+SET DESCRIPTION = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consequatur in rerum labore voluptatum dolorum ullam a aliquam voluptatibus ipsum debitis, laudantium fugit excepturi? Voluptatum, ipsa! Iure libero saepe exercitationem, reiciendis debitis quis adipisci corrupti id dicta placeat vitae dolore beatae! Asperiores amet in ex atque, illum soluta aliquid quos!'
+;
+COMMIT;
+
+CREATE OR REPLACE VIEW "WEBSTORE"."PRODUCTS_V" AS 
+  SELECT 
+    p.ID,
+    p.BRAND_ID,
+    db1.DICT_VALUE AS BRAND,
+    p.PRICE,
+    p.NAME,
+    p.EAN,
+    p.PRODUCT_TYPE_ID,
+    dpt1.DICT_VALUE AS PRODUCT_TYPE,
+    w.QUANTITY_ON_STOCK AS QTY_ON_STOCK
+    FROM PRODUCT_T p
+    LEFT JOIN DICTS_T db1 ON p.BRAND_ID = db1.ID
+    LEFT JOIN DICTS_T dpt1 ON p.PRODUCT_TYPE_ID = dpt1.ID
+    LEFT JOIN WAREHOUSE_T w ON p.ID = w.PRODUCT_ID;
+
+
+SELECT products_v.id, products_v.brand_id, products_v.brand, products_v.price, products_v.name, products_v.ean, products_v.product_type_id, products_v.product_type, products_v.qty_on_stock
+FROM products_v
+OFFSET 0 ROWS
+FETCH FIRST 10 ROWS ONLY;
+
+DROP VIEW "WEBSTORE"."PRODUCTS_V";

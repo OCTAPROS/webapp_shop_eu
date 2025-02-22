@@ -34,10 +34,10 @@ class ProductView(SQLModel, table=True):
 
     id: int = Field(Integer, primary_key=True)
     brand_id: int 
-    brand: str     
+    brand: str
     price: float 
     name: str 
     ean: str 
     product_type_id: int
     product_type: str
-    qty_on_stock: int
+    qty_on_stock: int | None
