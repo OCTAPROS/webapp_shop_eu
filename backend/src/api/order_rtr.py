@@ -43,6 +43,10 @@ def create_order(order_data: OrderInsert,
     print("##############################2")
     print(order.__dict__)
     print("##############################2")
+    for order_row in order_data.order_rows:
+        order_row_tbi: OrderRow = OrderRow(**order_row.model_dump())
+        db_session.add(order_row_tbi)  
+    db_session.commit()
 
     return order
 
