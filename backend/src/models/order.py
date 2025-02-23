@@ -55,6 +55,8 @@ class OrderAdminView(SQLModel, table=True):
     order_number: str 
     payment_method_id: int
     payment_method: str 
+    delivery_method_id: int
+    delivery_method: str 
     status_id: int
     order_status: str
     order_value: float
