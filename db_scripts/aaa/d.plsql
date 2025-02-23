@@ -273,3 +273,14 @@ CREATE OR REPLACE VIEW "WEBSTORE"."PRODUCTS_V" AS
 SELECT * FROM products_v
 OFFSET 0 ROWS
 FETCH FIRST 10 ROWS ONLY;
+
+
+SELECT 
+customer_t.id, 
+customer_t.first_name, 
+customer_t.last_name, 
+customer_t.email, 
+customer_t.phone_number, 
+customer_t.city, customer_t.postal_code, customer_t.street, customer_t.nip, customer_t.company_name
+FROM customer_t
+WHERE customer_t.id = 1;

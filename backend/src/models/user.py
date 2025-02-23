@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 import uuid
 from datetime import date, datetime
 from typing import List, Optional
-# from models.customer import Customer
+from models.customer import Customer
 
 
 class User(SQLModel, table=True):
@@ -40,3 +40,6 @@ class UserPublicModel(SQLModel):
 class UserLoginModel(SQLModel):
     username: str
     password: str
+
+class UserCustomerPublicModel(UserPublicModel):
+    customer_data: Customer
