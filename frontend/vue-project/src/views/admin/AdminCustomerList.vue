@@ -8,14 +8,20 @@
           <th>Id</th>
           <th>Imie</th>
           <th>Nazwisko</th>
+          <th>Miasto</th>
+          <th>Ulica</th>
+          <th>Telefon</th>
           <th>Akcje</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="product in customers" :key="product.id">
           <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
+          <td>{{ product.first_name }}</td>
           <td>{{ product.last_name }}</td>
+          <td>{{ product.city }}</td>
+          <td>{{ product.street }}</td>
+          <td>{{ product.phone_number }}</td>
           <td>
             <v-btn icon color="blue" @click="openDialog(product)">
               <v-icon>mdi-pencil</v-icon>

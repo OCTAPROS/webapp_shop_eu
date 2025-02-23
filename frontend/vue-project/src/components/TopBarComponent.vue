@@ -11,7 +11,7 @@
           <v-btn text="true" to="/products">Produkty</v-btn>
           <v-btn text="true" to="/cart" >Koszyk ({{ props.quantity }})</v-btn>
           <v-btn v-if="!props.isLogged" text="true" to="/login">Login</v-btn>
-          <v-btn text="true" to="/admin/products" >Panel Administracyjny </v-btn>
+          <v-btn v-if="props.isLogged" text="true" to="/admin/products" >Panel Administracyjny </v-btn>
           <span v-if="props.isLogged">{{  props.userEmail }}</span>
         </v-col>
       </v-row>

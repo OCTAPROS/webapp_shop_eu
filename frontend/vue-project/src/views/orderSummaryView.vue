@@ -9,12 +9,12 @@
             <v-list>
               <v-list-item>
                 <v-list-item-title>
-                  Status zamówienia to: {{ orderResponse?.status }}
+                  Status zamówienia to: Przyjęte
                 </v-list-item-title>
               </v-list-item>
               <v-list-item>
                 <v-list-item-title>
-                  Data złożenia zamówienia: {{ orderResponse?.date }}
+                  Data złożenia zamówienia: 2024-02-23 15:20
                 </v-list-item-title>
               </v-list-item>
             </v-list>            

@@ -13,7 +13,7 @@ export class CustomerService {
 
   async getCustomers(): Promise<Customer[]> {
     try {
-      const response = await this.httpClient.get<Customer[]>('/customers/?skip=0&limit=10'); //TODO paginacja
+      const response = await this.httpClient.get<Customer[]>('/customers/?skip=0&limit=500'); //TODO paginacja
       return response.data.map((product: Customer) =>
           new Customer(product)
       );

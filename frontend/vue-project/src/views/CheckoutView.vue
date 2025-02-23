@@ -18,15 +18,14 @@
           </v-card-text>
         </v-card>
       </v-col>
-
       <v-col cols="12" md="12">
         <v-card>
           <v-card-title class="ml-3">Twoje dane</v-card-title>
           <v-card-text class="ml-3">
             <p><strong>Email:</strong> {{ user.email }}</p>
-            <p><strong>Telefon:</strong> {{ user.id }}</p>
-            <p><strong>Adres:</strong> {{ user.is_active }}</p>
-            <p><strong>Adres:</strong> {{ user.is_superuser }}</p>
+            <p><strong>Telefon:</strong> 624728288</p>
+            <p><strong>Adres:</strong> Górna </p>
+            <p><strong>Adres:</strong> 43-332 Brzegi</p>
           </v-card-text>
         </v-card>
       </v-col>
