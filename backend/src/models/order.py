@@ -41,3 +41,20 @@ class OrderInsert(SQLModel):  # ✅ Input model for order creation
     payment_method_id: int
     delivery_method_id: int
     order_rows: List[OrderRowInsert] = Field(default_factory=list)
+
+class OrderAdminView(SQLModel, table=True):
+    __tablename__ = "orders_admin_v"
+
+    id: int = Field(default=None, primary_key=True)
+    customer_id: int   
+    first_name: str 
+    last_name: str 
+    phone_number: str 
+    street: str 
+    city: str 
+    order_number: str 
+    payment_method_id: int
+    payment_method: str 
+    status_id: int
+    order_status: str
+    order_value: float

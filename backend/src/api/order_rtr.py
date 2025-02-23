@@ -2,17 +2,20 @@ from fastapi import APIRouter, Depends, status, HTTPException
 from sqlmodel import Session, select
 
 from db.db_session import get_session
-from models.order import Order, OrderRow, OrderInsert, OrderRowInsert
+from models.order import Order, OrderRow, OrderInsert, OrderRowInsert, OrderAdminView
 from typing import List
+from auth.dependencies import get_current_user
+from models.user import User
 
 router = APIRouter()
 
-# @router.get("/", response_model=List[Order])
-# def get_all_orders(skip: int = 0, limit = 10, db_session: Session = Depends(get_session)):
-#     objects = db_session.exec(select(Order).offset(skip).limit(limit)).all()
-#     if not objects:
-#         raise HTTPException(detail=f"There are no Orders for selected criteria", status_code=status.HTTP_404_NOT_FOUND)
-#     return objects
+@router.get("/", response_model=List[OrderAdminView])
+# def get_all_orders(skip: int = 0, limit = 10, db_session: Session = Depends(get_session), current_user: User = Depends(get_current_user)):
+def get_all_orders(skip: int = 0, limit = 10, db_session: Session = Depends(get_session)):
+    objects = db_session.exec(select(OrderAdminView).offset(skip).limit(limit)).all()
+    if not objects:
+        raise HTTPException(detail=f"There are no Orders for selected criteria", status_code=status.HTTP_404_NOT_FOUND)
+    return objects
 
 # @router.get("/{id}", response_model=Order)
 # def get_order_by_id(id:int, db_session: Session = Depends(get_session)):

@@ -284,3 +284,52 @@ customer_t.phone_number,
 customer_t.city, customer_t.postal_code, customer_t.street, customer_t.nip, customer_t.company_name
 FROM customer_t
 WHERE customer_t.id = 1;
+
+
+CREATE OR REPLACE VIEW "WEBSTORE"."ORDERS_ADMIN_V"  
+AS 
+WITH 
+rows_calc AS (
+    SELECT 
+    orw.order_id,
+    orw.product_id,
+    orw.quantity,
+    NVL(orw.quantity, 0) * NVL(p.price, 0) AS order_row_value
+
+FROM ORDER_ROW_T orw
+    JOIN PRODUCT_T p ON p.ID = orw.PRODUCT_ID
+),
+
+order_totals AS (
+    SELECT 
+    rows_calc.order_id,
+    SUM(order_row_value) AS order_value
+    FROM rows_calc
+    GROUP BY rows_calc.order_id
+)
+
+SELECT 
+    h.id,
+    h.customer_id,
+    c.first_name,
+    c.last_name,
+    c.phone_number,
+    c.street,
+    c.city,
+    h.order_number,
+    h.payment_method_id,
+    d.dict_value AS payment_method,
+    h.status_id,
+    d_status.dict_value AS order_status,
+    ot.order_value
+
+FROM ORDER_T h
+    LEFT JOIN order_totals ot ON ot.order_id = h.id
+    LEFT JOIN dicts_t d ON d.id = h.payment_method_id
+    LEFT JOIN dicts_t d_status ON d_status.id = h.status_id
+    LEFT JOIN customer_t c ON c.id = h.customer_id
+WHERE h.status_id NOT IN (106, 105)
+;
+COMMIT;
+
+

@@ -9,16 +9,7 @@ from decimal import Decimal
 
 class Customer(SQLModel, table=True):
     __tablename__ = "customer_t"
-    # id: int | None = Field(sa_column=Column(Integer, primary_key=True))
-    # first_name: str = Field(sa_column=Column(String(150), nullable=False))
-    # last_name: str = Field(sa_column=Column(String(150), nullable=False))
-    # email: str = Field(sa_column=Column(String(50), nullable=False))
-    # phone_number: str = Field(sa_column=Column(String(9), nullable=False))
-    # city_id: int = Field(sa_column=Column(Integer, ForeignKey("city_t.id"), nullable=False))
-    # postal_code: str = Field(sa_column=Column(String(15), nullable=False))
-    # street: str = Field(sa_column=Column(String(50), nullable=False))
-    # nip: str = Field(sa_column=Column(String(20), nullable=False))
-    # company_name: str = Field(sa_column=Column(String(20), nullable=False))
+
     
     id: int | None = Field(primary_key=True)
     first_name: str = Field(String(150), nullable=False)
